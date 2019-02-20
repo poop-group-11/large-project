@@ -1,6 +1,9 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+ctx.canvas.height = window.innerHeight;
+ctx.canvas.width = window.innerWidth;
+
 var smallFishWidth = 75;
 var smallFishHeight = 25;
 
@@ -14,7 +17,7 @@ var fish1dX = 2;
 var fish1dY = 2;
 
 //more holdover variables
-var hookX = (ctx.canvas.width)/2;
+var hookX = (ctx.canvas.width)/2 - (hookWidth/2);
 var hookY = 0;
 var hookdX = 0;
 var hookdY = 0;
@@ -94,6 +97,14 @@ function movement() {
     var xMove = hookdX + fish1dX;
     var yMove = hookdY + fish1dY;
 
+    if(hookY + hookHeight + yMove > ctx.canvas.height || fish1Y + smallFishHeight + yMove > ctx.canvas.height){
+      yMove = 0;
+    }
+    if(hookX + hookWidth + xMove > ctx.canvas.width || fish1X + smallFishWidth + xMove > ctx.canvas.width ||
+       hookX + xMove < 0 || fish1X + xMove < 0){
+      xMove = 0;
+    }
+
     hookX += xMove;
     fish1X += xMove;
     hookY += yMove;
@@ -122,6 +133,7 @@ function movement() {
   }
 }
 
+
 function drawSmallFish() {
   //Draw the hitbox.
   ctx.beginPath();
@@ -135,7 +147,7 @@ function drawHook() {
   //Draw the hitbox.
   ctx.beginPath();
   ctx.rect(hookX, hookY, hookWidth, hookHeight);
-  ctx.strokeStlye = "azure";
+  ctx.strokeStyle = "yellow";
   ctx.stroke();
   ctx.closePath();
 }
