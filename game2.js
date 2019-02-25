@@ -4,7 +4,7 @@ var ctx = canvas.getContext("2d");
 ctx.canvas.height = window.innerHeight;
 ctx.canvas.width = window.innerWidth;
 
-var smallFish = {width:75, height: 25}
+var smallFish = {width:169, height: 150}
 var hook = {width:25, height: 75}
 
 //Create functions to generate multiple of these in future.
@@ -66,6 +66,8 @@ function drawSmallFish() {
   ctx.strokeStyle = "red";
   ctx.stroke();
   ctx.closePath();
+  var img = document.getElementById("fishAndWatch");
+  ctx.drawImage(img, fish1.x, fish1.y, smallFish.width, smallFish.height);
 }
 
 function drawObjects() {
@@ -97,8 +99,8 @@ function lineMovement() {
   } else {
     line.dL = 0;
   }
-  if(line.length + line.dL + hook.height > ctx.canvas.height){
-    line.length = ctx.canvas.height - hook.height;
+  if((line.length + line.dL) * Math.cos(line.theta) + hook.height > ctx.canvas.height){
+    line.length = ctx.canvas.height / Math.cos(line.theta) - hook.height;
   } else if(line.length + line.dL < 0){
     line.length = 0;
   } else {
