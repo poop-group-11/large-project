@@ -1,10 +1,10 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+//    var canvas = document.getElementById("canvas");
+//var ctx = canvas.getContext("2d");
 
 ctx.canvas.height = window.innerHeight;
 ctx.canvas.width  = window.innerWidth;
 
-hookCount = 8;
+hookCount = 6;
 
 //Create hook objects.
 hooks = [];

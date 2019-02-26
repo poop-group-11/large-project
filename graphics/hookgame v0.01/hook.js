@@ -1,6 +1,3 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-
 class Hook {
   constructor(id) {
     //Used for identifying the hook for catching fish/controls.
@@ -13,11 +10,16 @@ class Hook {
     this.width = 25;
     this.height = 75;
     //Origin information.
-    this.origin = {x: (ctx.canvas.width / 7) * (id + 1) - this.width/2,
+    this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (id + 1) - this.width/2,
                    y: 0}
     //Line information.
     this.length = 50;
     this.dL = 1;
+    //Hitbox information.
+    this.x = this.origin.x - this.width/2;
+    this.y = this.origin.y + this.length;
+    //Information of whether a fish is hooked and which fish it is.
+    this.hooked = -1;
   }
   draw() {
     //draw the line.
@@ -39,6 +41,7 @@ class Hook {
   }
   move() {
     this.length += this.dL;
+    this.y = this.origin.y + this.length;
     if(this.length < 0){
       this.length = 0;
       this.dL = -this.dL;
