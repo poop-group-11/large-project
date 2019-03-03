@@ -16,6 +16,7 @@ function drawHooks() {
   for(var i = 0; i < hookCount; i++){
     hooks[i].move();
     hooks[i].draw();
+    hooks[i].catch(); 
   }
 }
 

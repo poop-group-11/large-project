@@ -14,6 +14,17 @@ class Fish {
     //Hooked information.
     this.hooked = -1;
   }
+  respawn() {
+    //Reset Coordinates
+    this.x = Math.floor(Math.random() * ctx.canvas.width); //random x position.
+    this.y = Math.floor(Math.random() * (ctx.canvas.height - this.height - waterTop) + waterTop); //random y position.
+    this.dX = Math.floor(Math.random() * (4 - (1))) + (1); //Random inital value.
+    this.dY = Math.floor(Math.random() * (4 - (-4))) + (-4); //random initial value.
+    //Maybe Set a new img?
+    //TODO
+    //Reset hooked status
+    this.hooked = -1;
+  }
   move() {
     if(this.hooked == -1){ //Normal Movement.
       this.x += this.dX;

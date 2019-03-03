@@ -20,6 +20,8 @@ class Hook {
     this.y = this.origin.y + this.length;
     //Information of whether a fish is hooked and which fish it is.
     this.hooked = -1;
+    //Score information
+    this.score = 0;
   }
   draw() {
     //draw the line.
@@ -29,6 +31,9 @@ class Hook {
     ctx.strokeStyle = "black";
     ctx.stroke();
     ctx.closePath();
+    //draw the score.
+    ctx.font = "30px Arial"
+    ctx.fillText("Score:" + this.score.toString(), this.origin.x - this.width*5, this.origin.y + 30);
     //Draw hook hitbox.
     ctx.beginPath();
     ctx.rect(this.origin.x - (this.width/2),
@@ -48,6 +53,13 @@ class Hook {
     } else if(this.length + this.height > ctx.canvas.height){
       this.length = ctx.canvas.height - this.height;
       this.dL = -this.dL;
+    }
+  }
+  catch() {
+    if(this.hooked != -1 && this.y + this.height < waterTop){
+      this.score += 1;
+      fish[this.hooked].respawn();
+      this.hooked = -1;
     }
   }
 }
