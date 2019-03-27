@@ -8,6 +8,9 @@ const middleware = require('./middleware');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const io = require('socket.io')(server, {
+  transports: ['polling', 'websocket']
+});
 var ObjectId = mongoose.Types.ObjectId;
 
 const API_PORT = 3001;
@@ -189,6 +192,10 @@ router.post("/createUser",  (req, res) => {
 });
 
 router.post("/login", loginHandler);
+
+router.post("/startSession", (req, res) => {
+
+});
 
 
 
