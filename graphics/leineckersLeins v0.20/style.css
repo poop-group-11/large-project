@@ -1,0 +1,88 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  background-color: white;
+}
+
+img {
+  display: none;
+}
+
+.fishLogo {
+  display: block;
+  height: 340px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#gameScreen {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  display: none;
+  grid-template-columns: 5% 50px auto 50px 5%;
+  grid-template-rows: 10px 50px auto 40% 50px 10px;
+  grid-gap: 10px;
+}
+
+#start {
+  grid-column: 4;
+  grid-row: 5;
+}
+
+#back {
+  grid-column: 2;
+  grid-row: 5;
+}
+
+#homeScreen {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 5% 50px auto 50px 5%;
+  grid-template-rows: 10px 50px auto 40% 50px 10px;
+  grid-gap: 10px;
+}
+
+.title {
+  grid-column: 3;
+  grid-row: 2 / 4;
+}
+
+.newSession {
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.settingsButton {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.userLookup {
+  grid-column: 4;
+  grid-row: 5;
+}
+
+#settingsMenu {
+  display: none;
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  margin: -250px 0 0 -250px;
+  top: 50%;
+  left: 50%;
+  background-color: whitesmoke;
+}
+
+.settingsBack {
+  position: absolute;
+  top: 2.5%
+  right: 2.5%;
+}
