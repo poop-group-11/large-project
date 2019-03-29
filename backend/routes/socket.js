@@ -12,6 +12,7 @@ module.exports = (io) => {
 
      //recieved from browser
      //indicates that no more players can join
+     //add all users that are in this session's room to the session database
      client.on('sessionStart', (sessionCode) =>
      {
 
