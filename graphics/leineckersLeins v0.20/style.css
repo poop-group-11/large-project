@@ -48,9 +48,8 @@ img {
   margin: 0px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 5% 50px auto 50px 5%;
-  grid-template-rows: 10px 50px auto 40% 50px 10px;
-  grid-gap: 10px;
+  grid-template-columns: 5% auto 75% auto 5%;
+  grid-template-rows: 5% auto 75% auto 5%;
 }
 
 .title {
