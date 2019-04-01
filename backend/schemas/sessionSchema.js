@@ -7,7 +7,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 // Create Schema and Model
 const SessionSchema = new Schema(
   {
-    _id: shortid.generate,
+    _id: {'type': string, 'default': shortid.generate },
     isExpired: Boolean,
     users:  [{type:ObjectId, ref: 'User'}],
     winner:  {type:ObjectId, ref: 'User'}
