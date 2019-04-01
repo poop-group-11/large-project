@@ -27,6 +27,7 @@ img {
   grid-template-columns: 5% 50px auto 50px 5%;
   grid-template-rows: 10px 50px auto 40% 50px 10px;
   grid-gap: 10px;
+  background-image: url("Assets/background.jpg");
 }
 
 #start {

@@ -16,14 +16,22 @@
     </div>
     <div id="settingsMenu">
       <div class="settingsBack" onclick="backToMenu()">X</div>
+      <audio id="music" controls loop>
+        <source src="Assets\music.mp3" type="audio/mpeg">
+      </audio>
     </div>
     <div id="gameScreen">
       <canvas id="canvas" width="960" height="540"></canvas>
       <div id="back" onclick="backToMenu()">Back</div>
       <div id="start" onclick="startGame()">Start Game</div>
-      <img class="fishAsset" id="fishAndWatch" src="Assets\mrFishandWatch.svg">
-      <img class="fishAsset" id="clownfish" src="Assets\clownfish.svg">
+      <img id="fishAndWatch" src="Assets\mrFishandWatch.svg">
+      <img id="clownfish" src="Assets\clownfish.svg">
+      <img id="clownfishLeft" src="Assets\clownfishLeft.svg">
+      <img id="marlin" src="Assets\marlin.svg">
+      <img id="marlinLeft" src="Assets\marlinLeft.svg">
+      <img id="fishHook" src="Assets\fishHook.svg">
       <script type="text/javascript" src="config.js"></script>
+      <script type="text/javascript" src="fishAssets.js"></script>
       <script type="text/javascript" src="fish.js"></script>
       <script type="text/javascript" src="hook.js"></script>
       <script type="text/javascript" src="game.js"></script>

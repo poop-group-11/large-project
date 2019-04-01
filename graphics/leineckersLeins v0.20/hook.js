@@ -6,9 +6,9 @@ class Hook {
     this.pressed = {up: false,
                     down: false}
     //Draw() information.
-    this.img = 0;
-    this.width = 25;
-    this.height = 75;
+    this.img = document.getElementById("fishHook");
+    this.width = this.img.width;
+    this.height = this.img.height;
     //Origin information.
     this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (id + 1) - this.width/2,
                    y: 0}
@@ -28,13 +28,15 @@ class Hook {
     ctx.beginPath();
     ctx.moveTo(this.origin.x, this.origin.y);
     ctx.lineTo(this.origin.x, this.origin.y + this.length);
+    ctx.lineWidth = 4;
     ctx.strokeStyle = "black";
     ctx.stroke();
     ctx.closePath();
     //draw the score.
     ctx.font = "30px Arial"
-    ctx.fillText("Score:" + this.score.toString(), this.origin.x - this.width*5, this.origin.y + 30);
+    ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 30);
     //Draw hook hitbox.
+    /*
     ctx.beginPath();
     ctx.rect(this.origin.x - (this.width/2),
              this.origin.y + this.length,
@@ -43,6 +45,9 @@ class Hook {
     ctx.strokeStyle = "black";
     ctx.stroke();
     ctx.closePath();
+    */
+    //Draw hook.
+    ctx.drawImage(this.img, this.x + 1, this.y, this.width, this.height);
   }
   move() {
     this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (this.id + 1) - this.width/2,

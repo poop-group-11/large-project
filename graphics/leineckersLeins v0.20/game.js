@@ -35,6 +35,7 @@ function collide(hook, fish) {
     //Collision detected
     hook.hooked = fish.id;
     fish.hooked = hook.id;
+
   }
 }
 
@@ -69,12 +70,14 @@ function startGame() {
 function newSession() {
   document.getElementById("homeScreen").style.display = 'none';
   document.getElementById("gameScreen").style.display = 'grid';
+  document.getElementById("music").play();
 }
 
 function backToMenu() {
   document.getElementById("homeScreen").style.display = 'grid';
   document.getElementById("gameScreen").style.display = 'none';
   document.getElementById("settingsMenu").style.display = 'none';
+  document.getElementById("music").pause();
 }
 
 function displaySettings() {
