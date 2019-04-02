@@ -68,18 +68,19 @@ function startGame() {
 }
 
 function newSession() {
-  document.getElementById("homeScreen").style.display = 'none';
-  document.getElementById("gameScreen").style.display = 'grid';
-  document.getElementById("music").play();
+  document.getElementById("home-screen").style.display = 'none';
+  document.getElementById("game-screen").style.display = 'grid';
+  document.getElementById("settings-menu").style.display ='none';
+  document.getElementById("game-music").play();
 }
 
 function backToMenu() {
-  document.getElementById("homeScreen").style.display = 'grid';
-  document.getElementById("gameScreen").style.display = 'none';
-  document.getElementById("settingsMenu").style.display = 'none';
-  document.getElementById("music").pause();
+  document.getElementById("home-screen").style.display = 'grid';
+  document.getElementById("game-screen").style.display = 'none';
+  document.getElementById("settings-menu").style.display = 'none';
+  document.getElementById("game-music").pause();
 }
 
 function displaySettings() {
-  document.getElementById("settingsMenu").style.display = 'block';
+  document.getElementById("settings-menu").style.display = 'block';
 }

@@ -6,24 +6,24 @@
     <title>Hook Game</title>
   </head>
   <body>
-    <div id="homeScreen">
+    <div id="home-screen">
       <div class="title">
-        <img class="fishLogo" src="Assets\logo.png">
+        <img class="fish-logo" src="Assets\logo.png">
       </div>
-      <div class="newSession" onclick="newSession()">New Game</div>
-      <div class="settingsButton" onclick="displaySettings()">Settings</div>
-      <div class="userLookup">User Lookup</div>
+      <div class="menu-button" id="new-session" onclick="newSession()">New Game</div>
+      <div class="menu-button" id="settings-button" onclick="displaySettings()">Settings</div>
+      <div class="menu-button" id="user-lookup">User Lookup</div>
     </div>
-    <div id="settingsMenu">
-      <div class="settingsBack" onclick="backToMenu()">X</div>
-      <audio id="music" controls loop>
+    <div id="settings-menu">
+      <div class="settings-back" onclick="backToMenu()">X</div>
+      <audio id="game-music" controls loop>
         <source src="Assets\music.mp3" type="audio/mpeg">
       </audio>
     </div>
-    <div id="gameScreen">
+    <div id="game-screen">
       <canvas id="canvas" width="960" height="540"></canvas>
-      <div id="back" onclick="backToMenu()">Back</div>
-      <div id="start" onclick="startGame()">Start Game</div>
+      <div class="menu-button" id="back" onclick="backToMenu()">Back</div>
+      <div class="menu-button" id="start" onclick="startGame()">Start Game</div>
       <img id="fishAndWatch" src="Assets\mrFishandWatch.svg">
       <img id="clownfish" src="Assets\clownfish.svg">
       <img id="clownfishLeft" src="Assets\clownfishLeft.svg">
