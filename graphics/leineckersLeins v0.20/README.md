@@ -12,19 +12,19 @@ The code for the front end is split for ease of understanding and development. T
 * hook.js - Defines a hook object
 * game.js - Contains formal game logic
 
-###index.html
+### index.html
 This is a relatively standard HTML file, its split into two major <div> tags. The home-screen which is the first screen a user sees when opening the webpage. Displays the logo and gives the option to start a new game, adjust settings or lookup a user. The game-screen contains the canvas that we draw our animations onto. We also load our assets for animation in this div. We then load our JavaScript at the end of the body to make sure everything else loads before it tries to execute.
 
-###style.css
+### style.css
 This stylesheet is pretty messy, contains styling for all the elements found in the html. Should probably be restructured.
 
-###config.js
+### config.js
 Currently defines our global canvas and context variables for manipulating objects on the canvas. The amount of fish that can be drawn at one time, the amount of players, and the catch line for the hooks. I expect the amount of players will be changed once we implement joining through websockets and we should look into adjusting the catch line to the screen size rather than a static value.
 
-###fishAssets.js
+### fishAssets.js
 Sets up a data structure that allows us to pull both the left and right sprite of a fish from an array at random. Current implementation is a bit messy, as we have to manually input info about new fish sprites.
 
-###fish.js
+### fish.js
 Defines a fish object with the following attributes:
 
 * id - a unique id given to each fish used to identify which is hooked by a player.
@@ -46,7 +46,7 @@ Also contains the following methods:
 * draw() - Draws the fish onto the canvas with the correct asset based on its state. Draws rotated if it is hooked.
 * changeDir() - Randomizes current fish movement information. Currently not called need to figure out a good balance of when to change direction.
 
-###hook.js
+### hook.js
 Defines a hook object with the following attributes:
 
 * id - a unique id given to each hook used to identify which player they are.
@@ -67,7 +67,7 @@ Also contains the following methods.
 * move() - Logic for moving, moves according to dY value. Cannot cross top or bottom of screen.
 * catch() - Logic for catching a fish, if a fish is hooked and the hook crosses the waterTop threshold the player gets points.
 
-###game.js
+### game.js
 Creates the fish and hook objects for gameplay and resizes canvas to screen size. Contains the following methods:
 
 * drawHooks() - Iterates through list of hooks performing their methods for moving, drawing, and catching.
