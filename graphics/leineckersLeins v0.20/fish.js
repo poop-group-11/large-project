@@ -1,13 +1,11 @@
-fishAssets = document.getElementsByClassName("fishAsset");
-
 class Fish {
   constructor(id) {
     //Set an id tag.
     this.id = id;
     //Store img and dimensions.
     var fishIndex = Math.floor(Math.random() * fishAssets.length);
-    this.img = fishAssets[fishIndex];
-    this.imgLeft = null;
+    this.img = fishAssets[fishIndex].right;
+    this.imgLeft = fishAssets[fishIndex].left;
     this.width = this.img.width;
     this.height = this.img.height;
     //Create coordinate info.
@@ -23,8 +21,8 @@ class Fish {
   respawn() {
     //Reset fish img
     var fishIndex = Math.floor(Math.random() * fishAssets.length);
-    this.img = fishAssets[fishIndex];
-    this.imgLeft = null;
+    this.img = fishAssets[fishIndex].right;
+    this.imgLeft = fishAssets[fishIndex].left;
     this.width = this.img.width;
     this.height = this.img.height;
     //Reset directional status
@@ -69,13 +67,13 @@ class Fish {
       if(this.right) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
       } else {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.imgLeft, this.x, this.y, this.width, this.height);
       }
     } else {
       ctx.save(); //saves the state of canvas
       ctx.translate(this.x, this.y); //let's translate
       ctx.rotate(-Math.PI / 2); //rotate the image
-      ctx.drawImage(this.img, -this.width - hooks[this.hooked].height/4, hooks[this.hooked].width/2 - this.height/2, this.width, this.height);
+      ctx.drawImage(this.img, -this.width - hooks[this.hooked].height/2, hooks[this.hooked].width/2 - this.height/2, this.width, this.height);
       ctx.restore(); //restore the state of canvas
     }
   }
