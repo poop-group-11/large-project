@@ -2,9 +2,6 @@ class Hook {
   constructor(id) {
     //Used for identifying the hook for catching fish/controls.
     this.id = id;
-    //Control variables
-    this.pressed = {up: false,
-                    down: false}
     //Draw() information.
     this.img = document.getElementById("fishHook");
     this.width = this.img.width;
