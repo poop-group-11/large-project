@@ -2,6 +2,9 @@ const User = require("../schemas/userSchema");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
+const mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
+
 
 module.exports = class UserController
 {
@@ -122,6 +125,13 @@ module.exports = class UserController
           message: 'Authentication failed! Please check the request'
         });
       }
+    }
+
+    getFish(req, res) {
+      User.findById(ObjectId(req.decoded.id), (err, user) => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true, fish: user.fish });
+      });
     }
 
 
