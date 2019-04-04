@@ -12,24 +12,16 @@ module.exports = (io) => {
      //client can join if session has less than max users
      client.on('join', (sessionCode, user) =>
      {
-          
 
-
-          //if(io.nsps['/'].adapter.rooms["session"+sessionCode] && io.nsps['/'].adapter.rooms["session"+sessionCode].length > 8) 
-            //   socket.emit('newclientconnect',{ description: 'Session is at max capacity'});;
-          //else
-            //   socket.join("session"+sessionCode);
      });
 
      //recieved from browser
      //indicates that no more players can join
      //add all users that are in this session's room to the session database
-     //use this to update the users 
+     //use this to update the users
      client.on('sessionStart', (sessionCode) =>
      {
-          for( var member in io.nsps['/'].adapter.rooms["session"+sessionCode] ) {
-               players.push(member);
-          }
+
 
           Session.findByIdAndUpdate(ObjectId( sessionCode), {users: players}, err)
 
@@ -39,7 +31,7 @@ module.exports = (io) => {
     //recieved from mobile, sent to browser
     //tell everyone that some cast hook  io.emit casthook
     //put hook on screen
-    //emit cast hook 
+    //emit cast hook
      client.on('castHook', user =>
      {
           //players[user].postion = 0;
@@ -47,7 +39,7 @@ module.exports = (io) => {
      });
 
      //move the users reel up or down depending on the direction they reel
-     //recieved from mobile, sent to browserp or down 
+     //recieved from mobile, sent to browserp or down
      //u
      client.on('reel', (user, direction) =>
      {
