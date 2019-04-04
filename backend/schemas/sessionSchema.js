@@ -4,10 +4,11 @@ const shortid = require('shortid');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 
+
 // Create Schema and Model
 const SessionSchema = new Schema(
   {
-    _id: {'type': string, 'default': shortid.generate },
+    _id: {'type': String, 'default': shortid.generate},
     isExpired: Boolean,
     users:  [{type:ObjectId, ref: 'User'}],
     winner:  {type:ObjectId, ref: 'User'}
@@ -15,7 +16,9 @@ const SessionSchema = new Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model('Session', SessionSchema);
+
+
+const Session = mongoose.model('Session', SessionSchema);
 
 // Export so we can use in other files in this project
 module.exports = Session;

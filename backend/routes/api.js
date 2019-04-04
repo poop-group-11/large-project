@@ -2,11 +2,13 @@ module.exports = (io) =>
 {
     const express = require('express');
     const router = express.Router();
+    const middleware = require('../middleware.js');
 
     // const bodyParser = require("body-parser");
     // const logger = require("morgan");
     const UserController = require('../controllers/user_controller.js');
     const userController = new UserController();
+    const sessionController = require('../controllers/sessionController.js');
 
     // router.options("*", cors(), (req, res) => {
     //   console.log("RECIEVED OPTIONS REQUEST");
@@ -79,21 +81,14 @@ module.exports = (io) =>
 
     router.post("/login", userController.loginHandler);
 
-    router.post("/startSession", (req, res) => {
+    //create session in database
+    router.post("/startSession", sessionController.startSession);
 
-    });
+    //set isExpired to true
+    router.post("/endSession", sessionController.endSession);
 
-    router.post("/endSession", (req,res) => {
-
-    });
-
-    router.post("/createUser", (req, res) => {
-
-    });
-
-    router.get("/getFish", (req, res) => {
-
-    });
+    //return fishCaught for user
+    router.get("/getFish", middleware.checkToken, userController.getFish);
 
     return router;
 };

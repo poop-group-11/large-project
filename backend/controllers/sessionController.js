@@ -1,13 +1,19 @@
 const Session = require('../schemas/sessionSchema.js');
+const shortid = require('shortid');
+const mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
 
 //POST request from browser
 //creates session in database
 //returns session code
 let startSession = (req, res) =>
 {
+    // var id = shortid.generate;
+    // console.log(id);
     let session = new Session();
     session.isExpired = false;
-    session.save(err, sesh  => {
+    session._id = session._id.substring(0,5);
+    session.save((err, sesh)  => {
        if(err) return res.json({ success: false, message: "error creating session in database", error: err });
        return res.json({ success: true, message: sesh._id  });
     });
@@ -17,10 +23,16 @@ let startSession = (req, res) =>
 //declares winner and sets isExpired to true
 let endSession = (req, res) =>
 {
-    let { id } = req;
+    let { id, winner } = req;
+    Session.findOneAndUpdate({ _id: id }, { isExpired: true, winner: winner }, err =>
+    {
+        if(err) return res.json({ success: false, error: err });
+        return res.json({ success: true });
+    });
 }
 
 module.exports =
 {
-    startSession: startSession
+    startSession: startSession,
+    endSession: endSession
 };
