@@ -6,7 +6,7 @@ var ObjectId = mongoose.Types.ObjectId;
 //POST request from browser
 //creates session in database
 //returns session code
-let startSession = (req, res) =>
+let openSession = (req, res) =>
 {
     // var id = shortid.generate;
     // console.log(id);
@@ -33,6 +33,6 @@ let endSession = (req, res) =>
 
 module.exports =
 {
-    startSession: startSession,
+    openSession: openSession,
     endSession: endSession
 };

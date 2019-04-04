@@ -32,6 +32,11 @@ let checkToken = (req, res, next) => {
   }
 };
 
+let decode = (token) =>
+{
+    return jwt.verify(token, process.env.SECRET);
+}
+
 module.exports = {
   checkToken: checkToken
 }
