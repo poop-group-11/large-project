@@ -27,7 +27,7 @@ module.exports = (io) =>
     router.post("/openSession", sessionController.openSession);
 
     //set isExpired to true
-    router.post("/endSession", sessionController.endSession);
+    // router.post("/endSession", sessionController.endSession);
 
     //return fishCaught for user
     router.get("/getFish", middleware.checkToken, userController.getFish);

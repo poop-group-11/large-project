@@ -21,15 +21,15 @@ let openSession = (req, res) =>
 
 //ends session when time runs out
 //declares winner and sets isExpired to true
-let endSession = (req, res) =>
-{
-    let { id, winner } = req;
-    Session.findOneAndUpdate({ _id: id }, { isExpired: true, winner: winner }, err =>
-    {
-        if(err) return res.json({ success: false, error: err });
-        return res.json({ success: true });
-    });
-}
+// let endSession = (req, res) =>
+// {
+//     let { id, winner } = req;
+//     Session.findOneAndUpdate({ _id: id }, { isExpired: true, winner: winner }, err =>
+//     {
+//         if(err) return res.json({ success: false, error: err });
+//         return res.json({ success: true });
+//     });
+// }
 
 module.exports =
 {
