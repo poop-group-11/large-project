@@ -55,6 +55,12 @@ module.exports = (io) => {
        sockets.emit('reeled', { user: user, direction: direction});
      });
 
+     //if client leaves during game
+     client.on('leave', (sessionCode, user) => {
+      client.leave(sessionCode);
+      io.to(sessionCode).emit('userLeft', user);
+     });
+
      //recieved from browser only, then sent to phone
      //tell phone which fish was caught
      client.on('fishCaught', (user, fish) =>
@@ -62,6 +68,7 @@ module.exports = (io) => {
        sockets.emit('caught', { user: user, fish: fish} );
      });
 
+     //recieved from browser, session ended
      client.on('endSession', (sessionCode, winner) =>
      {
        //make all clients leave room
