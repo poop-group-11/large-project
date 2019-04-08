@@ -18,11 +18,15 @@ module.exports = (io) => {
         Session.update({_id: ObjectId(sessionCode), userLength: { $lt: 8 }, isStarted: { $lt: 1 } },
                        { $inc: { userLength: 1 }, $push: { users: ObjectId(user.id) } },
                        err => {
-                         if(err) console.log(err);
+                         if(err){
+                          console.log('user unabled to join session: ' + err);
+                          client.send('failedJoin');
+                         }
                          else {
                           client.join(sessionCode);
                           console.log(`client joined room: ${sessionCode}`);
                           io.to(sessionCode).emit('userJoined', user);
+                          client.send('successfullyJoined', user);
                          }
                        });
 
@@ -38,6 +42,7 @@ module.exports = (io) => {
         if(err) console.log(err);
        });
 
+       io.to(sessionCode).emit('startSession');
      });
 
     //recieved from mobile, sent to browser
@@ -71,6 +76,8 @@ module.exports = (io) => {
      //recieved from browser, session ended
      client.on('endSession', (sessionCode, winner) =>
      {
+       io.to(sessionCode).emit('sessionEnded', winner);
+
        //make all clients leave room
        io.of('/').in(sessionCode).clients((error, socketIds) => {
         if (error) throw error;
@@ -85,6 +92,7 @@ module.exports = (io) => {
        User.findByIdAndUpdate(ObjectId(winner), { $inc: { wins: 1 } }, err => {
         if(err) console.log(err);
        });
+
      });
  });
 };
