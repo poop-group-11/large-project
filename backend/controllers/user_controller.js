@@ -12,14 +12,14 @@ module.exports = class UserController
         let user = new User();
 
         console.log(req.body);
-        const{ username, password } = req.body;
+        const { username, password } = req.body;
 
         //prevent creation of account if something is wrong
         //TODO: add more issues
         if(!username || !password) {
             return res.json({
               success: false,
-              error: "INVALID INPUTS"
+              message: "INVALID INPUTS"
             });
         }
 
@@ -30,6 +30,7 @@ module.exports = class UserController
               console.log("error: " + error);
               return res.json({
                 success: false,
+                message: 'ERROR SAVING TO DATABASE',
                 error: error
               });
 
@@ -129,9 +130,22 @@ module.exports = class UserController
 
     getFish(req, res) {
       User.findById(ObjectId(req.decoded.id), (err, user) => {
-        if (err) return res.json({ success: false, error: err });
+        if (err) return res.json({ success: false, message: 'ERROR GETTING FISH', error: err });
         return res.json({ success: true, fish: user.fish });
       });
+    }
+
+    caughtFish(req, res) {
+
+      Users.update({ _id:req.decoded.id }, { $push: { fish: { $each: req.body.fish } } }, err => {
+        if(err){
+          console.log('error adding fish to database. error: ' + err);
+          return res.json({ success: false, message: 'ERROR ADDING FISH TO DATABASE', error: err });
+        } else {
+          return res.json({ success: true });
+        }
+      });
+
     }
 
 

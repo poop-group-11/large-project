@@ -33,6 +33,6 @@ let openSession = (req, res) =>
 
 module.exports =
 {
-    openSession: openSession,
-    endSession: endSession
+    openSession: openSession
+
 };
