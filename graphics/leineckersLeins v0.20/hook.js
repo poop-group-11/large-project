@@ -4,21 +4,37 @@ class Hook {
     this.id = id;
     //Draw() information.
     this.img = document.getElementById("fishHook");
-    this.width = this.img.width;
-    this.height = this.img.height;
     //Origin information.
-    this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (id + 1) - this.width/2,
+    this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (id + 1) - this.img.width/2,
                    y: 0}
     //Line information.
-    this.length = 50;
-    this.dL = 1;
+    this.length = -this.img.height - 10;
+    this.dL = 0;
     //Hitbox information.
-    this.x = this.origin.x - this.width/2;
+    this.x = this.origin.x - this.img.width/2;
     this.y = this.origin.y + this.length;
     //Information of whether a fish is hooked and which fish it is.
     this.hooked = -1;
     //Score information
     this.score = 0;
+    //Cast status
+    this.cast = false;
+  }
+  reset() {
+    //reset cast state and position.
+    this.cast = false;
+    //Reset hitbox dimensions.
+    this.length = -this.img.height - 10;
+    this.y = this.origin.y + this.length;
+  }
+  castLine() {
+    //set cast state
+    this.cast = true;
+    //Give an initial velocity?
+    this.dL = 3;
+    //Play Sound effect
+    var snd = new Audio("Assets\\castSound.mp3");
+    snd.play();
   }
   draw() {
     //draw the line.
@@ -44,27 +60,34 @@ class Hook {
     ctx.closePath();
     */
     //Draw hook.
-    ctx.drawImage(this.img, this.x + 1, this.y, this.width, this.height);
+    ctx.drawImage(this.img, this.x + 1, this.y, this.img.width, this.img.height);
   }
   move() {
-    this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (this.id + 1) - this.width/2,
-                   y: 0} //Reset origin on movement.
-    this.x = this.origin.x - this.width/2; //Reset x on movement for hitbox.
-    this.length += this.dL;
-    this.y = this.origin.y + this.length;
-    if(this.length < 0){
-      this.length = 0;
-      this.dL = -this.dL;
-    } else if(this.length + this.height > ctx.canvas.height){
-      this.length = ctx.canvas.height - this.height;
-      this.dL = -this.dL;
+    if(this.cast) {
+      this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (this.id + 1) - this.img.width/2,
+                     y: 0} //Reset origin on movement.
+      this.x = this.origin.x - this.img.width/2; //Reset x on movement for hitbox.
+      this.length += this.dL;
+      this.y = this.origin.y + this.length;
+      if(this.length < -this.img.height){
+        this.length = -this.img.height;
+        this.dL = -this.dL;
+      } else if(this.length + this.img.height > ctx.canvas.height){
+        this.length = ctx.canvas.height - this.img.height;
+        this.dL = -this.dL;
+      }
     }
   }
   catch() {
-    if(this.hooked != -1 && this.y + this.height < waterTop){
+    if(this.hooked != -1 && this.y + this.img.height < 0){
+      //Play sound effect
+      var snd = new Audio("Assets\\caughtFish.mp3");
+      snd.play();
+      //Game Logic
       this.score += 1;
       fish[this.hooked].respawn();
       this.hooked = -1;
+      this.reset();
     }
   }
 }

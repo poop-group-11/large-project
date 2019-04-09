@@ -12,6 +12,13 @@ for(var i = 0; i < fishCount; i++){
   fish[i] = new Fish(i);
 }
 
+//This function is intended for the frontend guys to fill with whatever logic they need.
+//Should basically take inputs from users and translate them into game terms for gameplay.
+function listen() {
+  //TODO
+}
+
+
 function drawHooks() {
   for(var i = 0; i < hookCount; i++){
     hooks[i].move();
@@ -29,9 +36,9 @@ function drawFish() {
 
 function collide(hook, fish) {
   if(hook.x < fish.x + fish.width  &&
-     hook.x + hook.width > fish.x  &&
+     hook.x + hook.img.width > fish.x  &&
      hook.y < fish.y + fish.height &&
-     hook.y + hook.height > fish.y) {
+     hook.y + hook.img.height > fish.y) {
     //Collision detected
     hook.hooked = fish.id;
     fish.hooked = hook.id;
@@ -51,36 +58,20 @@ function collision() {
   }
 }
 
+//Function is intended for frontend guys.
+//Should contain logic to send whatever necessary information to users/websocket.
+function talk() {
+  //TODO
+}
+
 function draw() {
   ctx.canvas.height = window.innerHeight;
   ctx.canvas.width = window.innerWidth;
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  listen();
   drawHooks();
   drawFish();
   collision();
+  talk();
   requestAnimationFrame(draw);
-}
-
-function startGame() {
-  document.getElementById("start").style.display = 'none';
-  document.getElementById("back").style.display = 'none';
-  draw();
-}
-
-function newSession() {
-  document.getElementById("home-screen").style.display = 'none';
-  document.getElementById("game-screen").style.display = 'grid';
-  document.getElementById("settings-menu").style.display ='none';
-  document.getElementById("game-music").play();
-}
-
-function backToMenu() {
-  document.getElementById("home-screen").style.display = 'grid';
-  document.getElementById("game-screen").style.display = 'none';
-  document.getElementById("settings-menu").style.display = 'none';
-  document.getElementById("game-music").pause();
-}
-
-function displaySettings() {
-  document.getElementById("settings-menu").style.display = 'block';
 }
