@@ -8,10 +8,16 @@ for(var i = 0; i < hookCount; i++){
 }
 
 fish = [];
-fishAssets = document.getElementsByClassName("fishAsset");
 for(var i = 0; i < fishCount; i++){
-  fish[i] = new Fish(i, fishAssets[i % 2]);
+  fish[i] = new Fish(i);
 }
+
+//This function is intended for the frontend guys to fill with whatever logic they need.
+//Should basically take inputs from users and translate them into game terms for gameplay.
+function listen() {
+  //TODO
+}
+
 
 function drawHooks() {
   for(var i = 0; i < hookCount; i++){
@@ -30,12 +36,13 @@ function drawFish() {
 
 function collide(hook, fish) {
   if(hook.x < fish.x + fish.width  &&
-     hook.x + hook.width > fish.x  &&
+     hook.x + hook.img.width > fish.x  &&
      hook.y < fish.y + fish.height &&
-     hook.y + hook.height > fish.y) {
+     hook.y + hook.img.height > fish.y) {
     //Collision detected
     hook.hooked = fish.id;
     fish.hooked = hook.id;
+
   }
 }
 
@@ -51,14 +58,20 @@ function collision() {
   }
 }
 
+//Function is intended for frontend guys.
+//Should contain logic to send whatever necessary information to users/websocket.
+function talk() {
+  //TODO
+}
+
 function draw() {
   ctx.canvas.height = window.innerHeight;
   ctx.canvas.width = window.innerWidth;
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  listen();
   drawHooks();
   drawFish();
   collision();
+  talk();
   requestAnimationFrame(draw);
 }
-
-draw();
