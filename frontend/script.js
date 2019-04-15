@@ -32,7 +32,7 @@ function newSession() {
 			connection.on('userJoined', (user) =>
 			{
 				//Pass the info on to display it.
-				displayUser(user.username, userCount);
+				displayUser(user, userCount);
 				userCount++;
 			});
 		}
