@@ -32,6 +32,14 @@ module.exports = (io) => {
 
      });
 
+     //for browser ONLY to join session room
+     client.on('joinSession', (sessionCode) =>
+     {
+      client.join(sessionCode);
+      console.log("browser joined room " + sessionCode);
+      io.to(sessionCode).emit('browserJoined');
+     });
+
      //recieved from browser
      //indicates that no more players can join
      //add all users that are in this session's room to the session database
