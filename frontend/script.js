@@ -1,6 +1,7 @@
 function startGame() {
   document.getElementById("start").style.display = 'none';
   document.getElementById("back").style.display = 'none';
+  initGame();
   draw();
 }
 
@@ -9,6 +10,7 @@ function newSession() {
   document.getElementById("game-screen").style.display = 'grid';
   document.getElementById("settings-menu").style.display ='none';
   document.getElementById("game-music").play();
+  loadAssets();
 }
 
 function backToMenu() {

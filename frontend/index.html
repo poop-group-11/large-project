@@ -12,9 +12,6 @@
       </div>
       <div id="settings-menu">
         <div class="settings-back" onclick="backToMenu()">X</div>
-        <audio id="game-music" controls loop>
-          <source src="Assets\music.mp3" type="audio/mpeg">
-        </audio>
       </div>
       <div class="menu-button" id="new-session" onclick="newSession()">New Game</div>
       <div class="menu-button" id="settings-button" onclick="displaySettings()">Settings</div>
@@ -22,6 +19,12 @@
     </div>
     <div id="game-screen">
       <canvas id="canvas" width="960" height="540"></canvas>
+      <div id="loading-overlay">
+        <div id="loading-bar">
+          <div id="progress-bar"></div>
+        </div>
+      </div>
+      <div id="session-code">Code is: </div>
       <div class="menu-button" id="back" onclick="backToMenu()">Back</div>
       <div class="menu-button" id="start" onclick="startGame()">Start Game</div>
     </div>
@@ -31,5 +34,8 @@
     <script type="text/javascript" src="fish.js"></script>
     <script type="text/javascript" src="hook.js"></script>
     <script type="text/javascript" src="game.js"></script>
+    <audio id="game-music" controls loop>
+      <source src="Assets\music.mp3" type="audio/mpeg">
+    </audio>
   </body>
 </html>
