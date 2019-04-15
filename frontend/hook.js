@@ -3,7 +3,7 @@ class Hook {
     //Used for identifying the hook for catching fish/controls.
     this.id = id;
     //Draw() information.
-    this.img = document.getElementById("fishHook");
+    this.img = fishHook;
     //Origin information.
     this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (id + 1) - this.img.width/2,
                    y: 0}
