@@ -1,6 +1,9 @@
 var connection;
 var sessionId;
 
+var hooks = [];
+var hookList = new Object();
+
 function startGame() {
   document.getElementById("start").style.display = 'none';
   document.getElementById("back").style.display = 'none';
@@ -9,6 +12,19 @@ function startGame() {
   connection.emit('sessionStart', sessionId);
   initGame();
   draw();
+}
+
+function createUser(user) {
+  hooks[userCount] = new Hook(user, userCount);
+  hookList[user] = userCount++;
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  for(var i = 0; i < userCount; i++){
+    hooks[i].origin =  {x: (ctx.canvas.width / (userCount + 1)) * (hooks[i].id + 1) - hooks[i].img.width/2,
+                   y: 0}
+    hooks[i].x = hooks[i].origin.x - hooks[i].img.width/2;
+    hooks[i].y = hooks[i].origin.y + hooks[i].length;
+    hooks[i].draw();
+  };
 }
 
 function newSession() {
@@ -33,8 +49,7 @@ function newSession() {
 			connection.on('userJoined', (user) =>
 			{
 				//Pass the info on to display it.
-				displayUser(user, userCount);
-				userCount++;
+				createUser(user);
 			});
 		}
 		else

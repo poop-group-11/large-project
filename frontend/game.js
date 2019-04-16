@@ -2,14 +2,14 @@
 ctx.canvas.height = window.innerHeight;
 ctx.canvas.width = window.innerWidth;
 
-hooks = [];
 fish = [];
 
 function initGame() {
-  for(var i = 0; i < hookCount; i++){
-    hooks[i] = new Hook(i);
+  for(var i = 0; i < userCount; i++){
+    hooks[i].lobby = false;
+    hooks[i].length = -hooks[i].img.height - 10;
+    hooks[i].y = this.origin.y + this.length;
   }
-    
   for(var i = 0; i < fishCount; i++){
     fish[i] = new Fish(i);
   }
@@ -23,7 +23,7 @@ function listen() {
 
 
 function drawHooks() {
-  for(var i = 0; i < hookCount; i++){
+  for(var i = 0; i < userCount; i++){
     hooks[i].move();
     hooks[i].draw();
     hooks[i].catch();
@@ -50,7 +50,7 @@ function collide(hook, fish) {
 }
 
 function collision() {
-  for(var i = 0; i < hookCount; i++){
+  for(var i = 0; i < userCount; i++){
     for(var j = 0; j < fishCount; j++){
       if(hooks[i].hooked != -1 || fish[j].hooked != -1){
         continue;
