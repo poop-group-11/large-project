@@ -13,7 +13,7 @@ The code for the front end is split for ease of understanding and development. T
 * game.js - Contains formal game logic
 
 ### index.html
-This is a relatively standard HTML file, its split into two major <div> tags. The home-screen which is the first screen a user sees when opening the webpage. Displays the logo and gives the option to start a new game, adjust settings or lookup a user. The game-screen contains the canvas that we draw our animations onto. We also load our assets for animation in this div. We then load our JavaScript at the end of the body to make sure everything else loads before it tries to execute.
+This is a relatively standard HTML file, its split into two major <div> tags. The home-screen which is the first screen a user sees when opening the webpage. Displays the logo and gives the option to start a new game, adjust settings or lookup a user. The game-screen contains the canvas that we draw our animations onto. We then load our JavaScript at the end of the body to make sure everything else loads before it tries to execute. The music is also loaded at the end of the body for better load times.
 
 ### style.css
 This stylesheet is pretty messy, contains styling for all the elements found in the html. Should probably be restructured.
