@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|EB+Garamond:500" rel="stylesheet">
     <meta charset="utf-8" />
     <title>Hook Game</title>
   </head>
@@ -12,24 +13,32 @@
       </div>
       <div id="settings-menu">
         <div class="settings-back" onclick="backToMenu()">X</div>
-        <audio id="game-music" controls loop>
-          <source src="Assets\music.mp3" type="audio/mpeg">
-        </audio>
       </div>
-      <div class="menu-button" id="new-session" onclick="newSession()">New Game</div>
-      <div class="menu-button" id="settings-button" onclick="displaySettings()">Settings</div>
-      <div class="menu-button" id="user-lookup">User Lookup</div>
+      <div class="menu-button" id="new-session" onclick="newSession()">
+        <p>New Game
+      </div>
+      <div class="menu-button" id="settings-button" onclick="displaySettings()">
+        <p>Settings
+      </div>
+      <div class="menu-button" id="user-lookup">
+        <p>User Lookup
+      </div>
     </div>
     <div id="game-screen">
       <canvas id="canvas" width="960" height="540"></canvas>
-      <div class="menu-button" id="back" onclick="backToMenu()">Back</div>
-      <div class="menu-button" id="start" onclick="startGame()">Start Game</div>
-      <img id="fishAndWatch" src="Assets\mrFishandWatch.svg">
-      <img id="clownfish" src="Assets\clownfish.svg">
-      <img id="clownfishLeft" src="Assets\clownfishLeft.svg">
-      <img id="marlin" src="Assets\marlin.svg">
-      <img id="marlinLeft" src="Assets\marlinLeft.svg">
-      <img id="fishHook" src="Assets\fishHook.svg">
+      <div id="loading-overlay">
+        <p>Reticulating Fish Splines...</p>
+        <div id="loading-bar">
+          <div id="progress-bar"></div>
+        </div>
+      </div>
+      <div id="session-code">Code is: </div>
+      <div class="menu-button" id="back" onclick="backToMenu()">
+        <p>Back
+      </div>
+      <div class="menu-button" id="start" onclick="startGame()">
+        <p>Start Game
+      </div>
     </div>
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="config.js"></script>
@@ -37,5 +46,8 @@
     <script type="text/javascript" src="fish.js"></script>
     <script type="text/javascript" src="hook.js"></script>
     <script type="text/javascript" src="game.js"></script>
+    <audio id="game-music" loop>
+      <source src="Assets\music.mp3" type="audio/mpeg">
+    </audio>
   </body>
 </html>

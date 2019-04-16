@@ -3,13 +3,16 @@ ctx.canvas.height = window.innerHeight;
 ctx.canvas.width = window.innerWidth;
 
 hooks = [];
-for(var i = 0; i < hookCount; i++){
-  hooks[i] = new Hook(i);
-}
-
 fish = [];
-for(var i = 0; i < fishCount; i++){
-  fish[i] = new Fish(i);
+
+function initGame() {
+  for(var i = 0; i < hookCount; i++){
+    hooks[i] = new Hook(i);
+  }
+    
+  for(var i = 0; i < fishCount; i++){
+    fish[i] = new Fish(i);
+  }
 }
 
 //This function is intended for the frontend guys to fill with whatever logic they need.

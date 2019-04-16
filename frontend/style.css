@@ -1,8 +1,17 @@
-html, body {
+#game-screen, #home-screen {
   width: 100%;
   height: 100%;
   margin: 0px;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 5% 7.5% 75% 7.5% 5%;
+  grid-template-rows: 5% 7.5% 75% 7.5% 5%;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
 }
 
 img {
@@ -12,75 +21,27 @@ img {
 .menu-button {
   color: whitesmoke;
   text-align: center;
-  border-radius: 5%;
+  border-radius: 15px;
   background-image: url("Assets/buttonTexture.png");
+  font-family: "Chelsea Market", cursive;
 }
 
-.fish-logo {
+#home-screen {
+  background-image: url("Assets/mainMenuBackground.jpg");
+  background-size: cover;
+}
+#home-screen .title {
+  grid-column: 3;
+  grid-row: 2/4;
+}
+#home-screen .title .fish-logo {
   display: block;
   height: 340px;
   width: auto;
   margin-left: auto;
   margin-right: auto;
 }
-
-#game-screen {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  overflow: hidden;
-  display: none;
-  grid-template-columns: 5% 7.5% 75% 7.5% 5%;
-  grid-template-rows: 5% 7.5% 75% 7.5% 5%;
-  background-image: url("Assets/gameBackground.jpg");
-  background-size: cover;
-}
-
-#start {
-  grid-column: 4;
-  grid-row: 4;
-  z-index: 2;
-}
-
-#back {
-  grid-column: 2;
-  grid-row: 4;
-  z-index: 2;
-}
-
-#home-screen {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 5% 7.5% 75% 7.5% 5%;
-  grid-template-rows: 5% 7.5% 75% 7.5% 5%;
-  background-image: url("Assets/mainMenuBackground.jpg");
-  background-size: cover;
-}
-
-.title {
-  grid-column: 3;
-  grid-row: 2 / 4;
-}
-
-#new-session {
-  grid-column: 2;
-  grid-row: 4;
-}
-
-#settings-button {
-  grid-column: 4;
-  grid-row: 2;
-}
-
-#user-lookup {
-  grid-column: 4;
-  grid-row: 4;
-}
-
-#settings-menu {
+#home-screen #settings-menu {
   display: none;
   width: 500px;
   height: 500px;
@@ -90,10 +51,66 @@ img {
   left: 50%;
   background-image: url("Assets/buttonTexture.png");
 }
-
-.settings-back {
-  color:whitesmoke;
+#home-screen #settings-menu .settings-back {
+  color: whitesmoke;
   position: absolute;
   top: 2.5%;
   right: 2.5%;
 }
+#home-screen #new-session {
+  grid-column: 2;
+  grid-row: 4;
+}
+#home-screen #settings-button {
+  grid-column: 4;
+  grid-row: 2;
+}
+#home-screen #user-lookup {
+  grid-column: 4;
+  grid-row: 4;
+}
+
+#game-screen {
+  background-image: url("Assets/gameBackground.png");
+  background-size: 100% 100%;
+}
+#game-screen #canvas {
+  font-family: "Chelsea Market", cursive;
+}
+#game-screen #loading-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: whitesmoke;
+  grid-column: 1/6;
+  grid-row: 1/6;
+  z-index: 3;
+}
+#game-screen #loading-overlay #loading-bar {
+  width: 100%;
+  background-color: grey;
+}
+#game-screen #loading-overlay #loading-bar #progress-bar {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+}
+#game-screen #session-code {
+  grid-column: 2;
+  grid-row: 3;
+}
+#game-screen #back {
+  grid-column: 2;
+  grid-row: 4;
+  z-index: 2;
+}
+#game-screen #start {
+  grid-column: 4;
+  grid-row: 4;
+  z-index: 2;
+}
+
+/*# sourceMappingURL=style.css.map */

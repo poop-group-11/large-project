@@ -4,8 +4,10 @@ var sessionId;
 function startGame() {
   document.getElementById("start").style.display = 'none';
   document.getElementById("back").style.display = 'none';
+  document.getElementById("session-code").style.display = 'none';
   //Start this bad boy up yeyeyeyeyeye
   connection.emit('sessionStart', sessionId);
+  initGame();
   draw();
 }
 
@@ -44,6 +46,7 @@ function newSession() {
 		}
 	)
 	.catch( err => console.log(err);) ;
+  loadAssets();
 }
 
 function backToMenu() {
