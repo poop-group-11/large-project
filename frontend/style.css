@@ -3,7 +3,6 @@
   height: 100%;
   margin: 0px;
   overflow: hidden;
-  display: grid;
   grid-template-columns: 5% 7.5% 75% 7.5% 5%;
   grid-template-rows: 5% 7.5% 75% 7.5% 5%;
 }
@@ -27,6 +26,7 @@ img {
 }
 
 #home-screen {
+  display: grid;
   background-image: url("Assets/mainMenuBackground.jpg");
   background-size: cover;
 }
@@ -71,6 +71,7 @@ img {
 }
 
 #game-screen {
+  display: none;
   background-image: url("Assets/gameBackground.png");
   background-size: 100% 100%;
 }
