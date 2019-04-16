@@ -19,15 +19,14 @@ function newSession() {
   //Open socket, listen for join, make hook appear.
   connection = io('https://poopgroup11.xyz/leins');
   fetch('https://poopgroup11.xyz/api/openSession', { method: "POST" })
-	.then(res = > res.json())
-	.then
-	( 
-		if(res.success == true)
+	.then(res => res.json())
+	.then(function() {
+    if(res.success == true)
 		{
 			sessionId = res.message;
 			var userCount = 0;
 			connection.emit('joinSession', sessionId);
-			connection.on('browserJoined' => {console.log('successful')});
+			connection.on('browserJoined', function() {console.log("Successful Connection!")});
 			//TODO: Display the id in the CSS
 			document.getElementById("session-code").innerHTML = sessionId;
 			//Listen for people to join
@@ -44,8 +43,8 @@ function newSession() {
 			//Bring up back to the homescreen.
 			backToMenu();
 		}
-	)
-	.catch( err => console.log(err);) ;
+  })
+	.catch( err => console.log(err));
   loadAssets();
 }
 
