@@ -1,6 +1,7 @@
 function startGame() {
   document.getElementById("start").style.display = 'none';
   document.getElementById("back").style.display = 'none';
+  document.getElementById("session-code").style.display = 'none';
   initGame();
   draw();
 }

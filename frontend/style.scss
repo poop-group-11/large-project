@@ -1,0 +1,103 @@
+@mixin grid-place($column, $row) {
+  grid-column: $column;
+  grid-row: $row;
+}
+
+%fullscreen-grid {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 5% 7.5% 75% 7.5% 5%;
+  grid-template-rows: 5% 7.5% 75% 7.5% 5%;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+
+img {
+  display: none;
+}
+
+.menu-button {
+  color: whitesmoke;
+  text-align: center;
+  border-radius: 15px;
+  background-image: url("Assets/buttonTexture.png");
+  font-family: 'Chelsea Market', cursive;
+}
+
+#home-screen {
+  @extend %fullscreen-grid;
+  background-image: url("Assets/mainMenuBackground.jpg");
+  background-size: cover;
+  .title {
+    @include grid-place(3, #{2} / #{4});
+    .fish-logo {
+      display: block;
+      height: 340px;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  #settings-menu {
+    display: none;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    margin: -250px 0 0 -250px;
+    top: 50%;
+    left: 50%;
+    background-image: url("Assets/buttonTexture.png");
+    .settings-back {
+      color: whitesmoke;
+      position: absolute;
+      top: 2.5%;
+      right: 2.5%;
+    }
+  }
+  #new-session { @include grid-place(2, 4); }
+  #settings-button { @include grid-place(4, 2); }
+  #user-lookup { @include grid-place(4, 4); }
+}
+
+#game-screen {
+  @extend %fullscreen-grid;
+  background-image: url("Assets/gameBackground.png");
+  background-size: 100% 100%;
+  #canvas { font-family: 'Chelsea Market', cursive; }
+  #loading-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: whitesmoke;
+    @include grid-place(#{1} / #{6}, #{1} / #{6});
+    z-index: 3;
+    #loading-bar {
+      width: 100%;
+      background-color: grey;
+      #progress-bar {
+        width: 1%;
+        height: 30px;
+        background-color: green;
+      }
+    }
+  }
+  #session-code { @include grid-place(2, 3); }
+  #back {
+    @include grid-place(2, 4);
+    z-index: 2;
+  }
+  #start {
+    @include grid-place(4, 4);
+    z-index: 2;
+  }
+}

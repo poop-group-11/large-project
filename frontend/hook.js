@@ -46,7 +46,7 @@ class Hook {
     ctx.stroke();
     ctx.closePath();
     //draw the score.
-    ctx.font = "30px Arial"
+    ctx.font = "30px Chelsea Market";
     ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 30);
     //Draw hook hitbox.
     /*
