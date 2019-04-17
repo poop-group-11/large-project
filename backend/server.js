@@ -10,7 +10,7 @@ const cors = require('cors');
 // const jwt = require('jsonwebtoken');
 // const bcrypt = require('bcryptjs');
 const server = require('http').createServer(app);
-const io = require('socket.io').listen(server);
+const io = require('socket.io')(server);
 var ObjectId = mongoose.Types.ObjectId;
 
 const API_PORT = 3001;
