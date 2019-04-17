@@ -40,7 +40,6 @@ function newSession() {
     if(res.success == true)
 		{
 			sessionId = res.message;
-			var userCount = 0;
 			connection.emit('joinSession', sessionId);
 			connection.on('browserJoined', function() {console.log("Successful Connection!")});
 			//TODO: Display the id in the CSS
