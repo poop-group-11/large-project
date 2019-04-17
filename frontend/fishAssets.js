@@ -25,7 +25,7 @@ function pushAsset(left, right) {
 var fishHook;
 
 function loadAssets() {
-  fishHook = loadImg("Assets\\fishhook.svg");
+  fishHook = loadImg("Assets\\fishHook.svg");
   pushAsset("Assets\\betaleft.svg", "Assets\\betaright.svg");
   pushAsset("Assets\\clownfishLeft.svg", "Assets\\clownfish.svg");
   pushAsset("Assets\\flounderleft.svg", "Assets\\flounderright.svg");
