@@ -1,14 +1,15 @@
 class Hook {
-  constructor(id) {
+  constructor(user, id) {
     //Used for identifying the hook for catching fish/controls.
     this.id = id;
+    this.user = user;
     //Draw() information.
     this.img = fishHook;
     //Origin information.
-    this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (id + 1) - this.img.width/2,
+    this.origin = {x: (ctx.canvas.width / (userCount + 1)) * (id + 1) - this.img.width/2,
                    y: 0}
     //Line information.
-    this.length = -this.img.height - 10;
+    this.length = 50;
     this.dL = 0;
     //Hitbox information.
     this.x = this.origin.x - this.img.width/2;
@@ -19,6 +20,7 @@ class Hook {
     this.score = 0;
     //Cast status
     this.cast = false;
+    this.lobby = true;
   }
   reset() {
     //reset cast state and position.
@@ -46,8 +48,10 @@ class Hook {
     ctx.stroke();
     ctx.closePath();
     //draw the score.
-    ctx.font = "30px Chelsea Market";
-    ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 30);
+    if( !this.lobby ){
+      ctx.font = "30px Chelsea Market";
+      ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 30);  
+    }
     //Draw hook hitbox.
     /*
     ctx.beginPath();
@@ -63,9 +67,9 @@ class Hook {
     ctx.drawImage(this.img, this.x + 1, this.y, this.img.width, this.img.height);
   }
   move() {
+    this.origin = {x: (ctx.canvas.width / (userCount + 1)) * (this.id + 1) - this.img.width/2,
+                   y: 0} //Reset origin on movement.
     if(this.cast) {
-      this.origin = {x: (ctx.canvas.width / (hookCount + 1)) * (this.id + 1) - this.img.width/2,
-                     y: 0} //Reset origin on movement.
       this.x = this.origin.x - this.img.width/2; //Reset x on movement for hitbox.
       this.length += this.dL;
       this.y = this.origin.y + this.length;
