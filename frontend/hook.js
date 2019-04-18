@@ -89,9 +89,18 @@ class Hook {
       snd.play();
       //Game Logic
       this.score += 1;
+	  //Maximizes the winning score
+	  if(this.score > winning.score)
+	  {
+		  winning.user = this.user;
+		  winning.score = this.score;
+	  }
+	  
+	  connection.emit('fishCaught', (this.user, fish[this.hooked]));
       fish[this.hooked].respawn();
       this.hooked = -1;
       this.reset();
+	  
     }
   }
 }

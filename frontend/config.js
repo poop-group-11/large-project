@@ -4,3 +4,4 @@ var ctx = canvas.getContext("2d");
 
 var fishCount = 10;
 var userCount = 0;
+var scoreGoal = 11;
