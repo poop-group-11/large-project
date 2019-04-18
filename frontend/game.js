@@ -2,6 +2,7 @@
 ctx.canvas.height = window.innerHeight;
 ctx.canvas.width = window.innerWidth;
 
+var winning = new Object();
 fish = [];
 
 function initGame() {
@@ -13,12 +14,28 @@ function initGame() {
   for(var i = 0; i < fishCount; i++){
     fish[i] = new Fish(i);
   }
+  
+  winning.score = 0;
 }
 
 //This function is intended for the frontend guys to fill with whatever logic they need.
 //Should basically take inputs from users and translate them into game terms for gameplay.
 function listen() {
   //TODO
+  connection.on('casted', user =>
+  {
+	  //Get's user's usercount from hookList then gets the line to cast
+	  hooks[hookList[user]].castLine();
+  });
+  
+  connection.on('reeled', (user, direction) =>
+  {
+	  //Deal with interpreting direction and making the hook go up and down
+	  if(direction == -1)
+		  //TODO: Make hook go up
+	  else
+		  hooks[hookList[user]].castLine();
+  });
 }
 
 
@@ -65,6 +82,10 @@ function collision() {
 //Should contain logic to send whatever necessary information to users/websocket.
 function talk() {
   //TODO
+  if(winning.score >= scoreGoal)
+  {
+	  connection.emit('endSession', (sessionId, winning.user));
+  }
 }
 
 function draw() {

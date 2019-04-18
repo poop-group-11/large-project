@@ -36,7 +36,7 @@ function newSession() {
   connection = io('https://poopgroup11.xyz/leins');
   fetch('https://poopgroup11.xyz/api/openSession', { method: "POST" })
 	.then(res => res.json())
-	.then(function() {
+	.then(function(res) {
     if(res.success == true)
 		{
 			sessionId = res.message;
