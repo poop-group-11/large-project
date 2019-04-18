@@ -33,6 +33,7 @@ function listen() {
 	  //Deal with interpreting direction and making the hook go up and down
 	  if(direction == -1)
 		  //TODO: Make hook go up
+		console.log('hi');
 	  else
 		  hooks[hookList[user]].castLine();
   });
