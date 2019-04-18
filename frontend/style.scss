@@ -46,22 +46,6 @@ img {
       margin-right: auto;
     }
   }
-  #settings-menu {
-    display: none;
-    width: 500px;
-    height: 500px;
-    position: absolute;
-    margin: -250px 0 0 -250px;
-    top: 50%;
-    left: 50%;
-    background-image: url("Assets/buttonTexture.png");
-    .settings-back {
-      color: whitesmoke;
-      position: absolute;
-      top: 2.5%;
-      right: 2.5%;
-    }
-  }
   #new-session { @include grid-place(2, 4); }
   #user-lookup { @include grid-place(4, 4); }
 }
@@ -95,7 +79,23 @@ img {
   #session-code { @include grid-place(2, 3); }
   #settings-button {
     @include grid-place(4, 2);
-    z-index: 2; 
+    z-index: 2;
+  }
+  #settings-menu {
+    display: none;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    margin: -250px 0 0 -250px;
+    top: 50%;
+    left: 50%;
+    background-image: url("Assets/buttonTexture.png");
+    .settings-back {
+      color: whitesmoke;
+      position: absolute;
+      top: 2.5%;
+      right: 2.5%;
+    }
   }
   #back {
     @include grid-place(2, 4);
