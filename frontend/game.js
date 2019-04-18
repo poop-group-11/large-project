@@ -22,23 +22,23 @@ function initGame() {
 //Should basically take inputs from users and translate them into game terms for gameplay.
 function listen() {
   //TODO
-  connection.on('casted', user =>
-  {
-	  //Get's user's usercount from hookList then gets the line to cast
-	  hooks[hookList[user]].castLine();
-  });
-  
-  connection.on('reeled', (user, direction) =>
-  {
-	  //Deal with interpreting direction and making the hook go up and down
-	  if(direction == -1)
-		  //TODO: Make hook go up
-		console.log('hi');
-	  else
-		  hooks[hookList[user]].castLine();
-  });
+  connection.on('casted', (user) => findAndSend(user));
+  connection.on('reeled', (user, direction) => directionDetermine(user, direction));
 }
 
+function directionDetermine(user, direction)
+{
+	if(direction == -1)
+		//TODO: Make hook go up
+		console.log('Hi');
+	else
+		hooks[hookList[user]].castLine();
+}
+
+function findAndSend(user)
+{
+	hooks[hookList[user]].castLine();
+}
 
 function drawHooks() {
   for(var i = 0; i < userCount; i++){
@@ -85,6 +85,7 @@ function talk() {
   //TODO
   if(winning.score >= scoreGoal)
   {
+	  //console.log('Game should end');
 	  connection.emit('endSession', (sessionId, winning.user));
   }
 }

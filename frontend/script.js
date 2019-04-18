@@ -33,7 +33,7 @@ function newSession() {
   document.getElementById("settings-menu").style.display ='none';
   document.getElementById("game-music").play();
   //Open socket, listen for join, make hook appear.
-  connection = io('https://poopgroup11.xyz/leins');
+  connection = io('http://localhost');
   fetch('https://poopgroup11.xyz/api/openSession', { method: "POST" })
 	.then(res => res.json())
 	.then(function(res) {
@@ -45,11 +45,7 @@ function newSession() {
 			//TODO: Display the id in the CSS
 			document.getElementById("session-code").innerHTML = sessionId;
 			//Listen for people to join
-			connection.on('userJoined', (user) =>
-			{
-				//Pass the info on to display it.
-				createUser(user);
-			});
+			connection.on('userJoined', createUser());
 		}
 		else
 		{
