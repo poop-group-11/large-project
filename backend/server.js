@@ -14,7 +14,7 @@ const io = require('socket.io')(server);
 var ObjectId = mongoose.Types.ObjectId;
 
 const API_PORT = 3001;
-app.use(cors());
+// app.use(cors());
 const router = express.Router();
 
 let dbRoute;
@@ -43,17 +43,7 @@ db
 const api_routes = require('./routes/api');
 const socket_routes = require('./routes/socket');
 
-socket_routes(io);
-
-// (optional) only made for logging and
-// bodyParser, parses the request body to be a readable json format
 app
-  .use(bodyParser.urlencoded({ extended: false }))
-
-  .use(bodyParser.json())
-
-  .use(logger("dev"))
-
   .use(cors())
 
   .use((req, res, next) => {
@@ -71,8 +61,19 @@ app
       //move on
         next();
       }
-  })
+  });
 
+socket_routes(io);
+
+
+// (optional) only made for logging and
+// bodyParser, parses the request body to be a readable json format
+app
+  .use(bodyParser.urlencoded({ extended: false }))
+
+  .use(bodyParser.json())
+
+  .use(logger("dev"))
 
 // append /api for our http requests
   .use("/api", api_routes(io))
