@@ -15,7 +15,7 @@ module.exports = (io) => {
      client.on('join', (sessionCode, token) =>
      {
         let user = middleware.decode(token);
-        Session.update({_id: ObjectId(sessionCode), userLength: { $lt: 8 }, isStarted: { $lt: 1 } },
+        Session.update({_id: sessionCode, userLength: { $lt: 8 }, isStarted: { $lt: 1 } },
                        { $inc: { userLength: 1 }, $push: { users: ObjectId(user.id) } },
                        err => {
                          if(err){
@@ -46,7 +46,8 @@ module.exports = (io) => {
      //use this to update the users
      client.on('sessionStart', (sessionCode) =>
      {
-       Session.findByIdAndUpdate(ObjectId(sessionCode), { isStarted: 1 }, err =>{
+       console.log(sessionCode);
+       Session.findByIdAndUpdate(sessionCode, { isStarted: 1 }, err =>{
         if(err) console.log(err);
        });
 
@@ -93,7 +94,7 @@ module.exports = (io) => {
        });
 
        //update dataabase with session winner
-       Session.findByIdAndUpdate(ObjectId(sessionCode), { winner: ObjectId(winner) }, err => {
+       Session.findByIdAndUpdate(sessionCode, { winner: ObjectId(winner) }, err => {
         if(err) console.log(err)
        });
 
