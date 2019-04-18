@@ -3,8 +3,8 @@
   height: 100%;
   margin: 0px;
   overflow: hidden;
-  grid-template-columns: 5% 7.5% 75% 7.5% 5%;
-  grid-template-rows: 5% 7.5% 75% 7.5% 5%;
+  grid-template-columns: 5% 115px auto 115px 5%;
+  grid-template-rows: 5% 56px auto 56px 5%;
 }
 
 html, body {
@@ -23,6 +23,7 @@ img {
   border-radius: 15px;
   background-image: url("Assets/buttonTexture.png");
   font-family: "Chelsea Market", cursive;
+  font-size: 1em;
 }
 
 #home-screen {
@@ -61,10 +62,6 @@ img {
   grid-column: 2;
   grid-row: 4;
 }
-#home-screen #settings-button {
-  grid-column: 4;
-  grid-row: 2;
-}
 #home-screen #user-lookup {
   grid-column: 4;
   grid-row: 4;
@@ -102,6 +99,11 @@ img {
 #game-screen #session-code {
   grid-column: 2;
   grid-row: 3;
+}
+#game-screen #settings-button {
+  grid-column: 4;
+  grid-row: 2;
+  z-index: 2;
 }
 #game-screen #back {
   grid-column: 2;

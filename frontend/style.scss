@@ -8,8 +8,8 @@
   height: 100%;
   margin: 0px;
   overflow: hidden;
-  grid-template-columns: 5% 7.5% 75% 7.5% 5%;
-  grid-template-rows: 5% 7.5% 75% 7.5% 5%;
+  grid-template-columns: 5% 115px auto 115px 5%;
+  grid-template-rows: 5% 56px auto 56px 5%;
 }
 
 html, body {
@@ -28,6 +28,7 @@ img {
   border-radius: 15px;
   background-image: url("Assets/buttonTexture.png");
   font-family: 'Chelsea Market', cursive;
+  font-size: 1em;
 }
 
 #home-screen {
@@ -62,7 +63,6 @@ img {
     }
   }
   #new-session { @include grid-place(2, 4); }
-  #settings-button { @include grid-place(4, 2); }
   #user-lookup { @include grid-place(4, 4); }
 }
 
@@ -93,6 +93,10 @@ img {
     }
   }
   #session-code { @include grid-place(2, 3); }
+  #settings-button {
+    @include grid-place(4, 2);
+    z-index: 2; 
+  }
   #back {
     @include grid-place(2, 4);
     z-index: 2;
