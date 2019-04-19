@@ -1,3 +1,5 @@
+$wood-color: #7d6154;
+
 @mixin grid-place($column, $row) {
   grid-column: $column;
   grid-row: $row;
@@ -23,12 +25,36 @@ img {
 }
 
 .menu-button {
+  position: relative;
+  display: inline-block;
   color: whitesmoke;
+  outline: none;
+  text-shadow: -1px -1px 0 transparentize(whitesmoke, 0.5);
   text-align: center;
-  border-radius: 15px;
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 1px lighten($wood-color, 3.75%),
+              0 8px 0 darken($wood-color, 7.5%),
+              0 10px 15px rgba(0, 0, 0, 0.35);
   background-image: url("Assets/buttonTexture.png");
   font-family: 'Chelsea Market', cursive;
   font-size: 1em;
+  transition: all 100ms ease-in-out;
+
+  &:hover {
+    text-shadow: 0 0 5px transparentize(whitesmoke, 0.35),
+                 -1px -1px 0 transparentize(whitesmoke, 0.5);
+    box-shadow: inset 0 -1px 1px lighten($wood-color, 1.875%),
+                0 8px 0 darken($wood-color, 6%),
+                0 10px 15px rgba(0, 0, 0, 0.35);
+  }
+
+  &:active,
+  &:focus {
+    top: 4px;
+    box-shadow: inset 0 -1px 1px lighten($wood-color, 1.875%),
+                0 5px 0 darken($wood-color, 6%),
+                0 10px 15px rgba(0, 0, 0, 0.35);
+  }
 }
 
 #home-screen {

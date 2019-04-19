@@ -7,6 +7,8 @@ var hookList = new Object();
 function startGame() {
   document.getElementById("start").style.display = 'none';
   document.getElementById("back").style.display = 'none';
+  document.getElementById("settings-menu").style.display = 'none';
+  document.getElementById("settings-button").style.display = 'none';
   document.getElementById("session-code").style.display = 'none';
   //Start this bad boy up yeyeyeyeyeye
   connection.emit('sessionStart', sessionId);
@@ -64,6 +66,6 @@ function backToMenu() {
   document.getElementById("game-music").pause();
 }
 
-function displaySettings() {
-  document.getElementById("settings-menu").style.display = 'block';
+function displaySettings(display) {
+  document.getElementById("settings-menu").style.display = display;
 }
