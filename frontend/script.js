@@ -60,7 +60,7 @@ function newSession() {
 }
 
 function backToMenu() {
-  document.getElementById("home-screen").style.display = 'grid';
+  document.getElementById("home-screen").style.display = 'flex';
   document.getElementById("game-screen").style.display = 'none';
   document.getElementById("settings-menu").style.display = 'none';
   document.getElementById("game-music").pause();
