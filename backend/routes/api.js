@@ -26,8 +26,7 @@ module.exports = (io) =>
     //create session in database
     router.post("/openSession", sessionController.openSession);
 
-    //set isExpired to true
-    // router.post("/endSession", sessionController.endSession);
+    router.post("/caughtFish", middleware.checkToken, userController.caughtFish);
 
     //return fishCaught for user
     router.get("/getFish", middleware.checkToken, userController.getFish);

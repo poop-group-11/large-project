@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 // Create Schema and Model
 const fishSchema = new Schema(
   {
+    _id: Number,
     name: String,
     value: Number,
     sprite: String
