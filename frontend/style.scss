@@ -1,17 +1,10 @@
 $wood-color: #7d6154;
+$text-color: whitesmoke;
+$text-color-inverted: #0a0a0a;
 
 @mixin grid-place($column, $row) {
   grid-column: $column;
   grid-row: $row;
-}
-
-%fullscreen-grid {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  overflow: hidden;
-  grid-template-columns: 5% 115px auto 115px 5%;
-  grid-template-rows: 5% 56px auto 56px 5%;
 }
 
 html, body {
@@ -29,7 +22,9 @@ img {
   display: inline-block;
   color: whitesmoke;
   outline: none;
-  text-shadow: -1px -1px 0 transparentize(whitesmoke, 0.5);
+  width: 115px;
+  height: 56px;
+  text-shadow: -1px -1px 0 transparentize($text-color-inverted, 0.5);
   text-align: center;
   border-radius: 6px;
   box-shadow: inset 0 -1px 1px lighten($wood-color, 3.75%),
@@ -41,8 +36,8 @@ img {
   transition: all 100ms ease-in-out;
 
   &:hover {
-    text-shadow: 0 0 5px transparentize(whitesmoke, 0.35),
-                 -1px -1px 0 transparentize(whitesmoke, 0.5);
+    text-shadow: 0 0 5px transparentize($text-color, 0.35),
+                 -1px -1px 0 transparentize($text-color-inverted, 0.5);
     box-shadow: inset 0 -1px 1px lighten($wood-color, 1.875%),
                 0 8px 0 darken($wood-color, 6%),
                 0 10px 15px rgba(0, 0, 0, 0.35);
@@ -58,12 +53,17 @@ img {
 }
 
 #home-screen {
-  display: grid;
-  @extend %fullscreen-grid;
-  background-image: url("Assets/mainMenuBackground.jpg");
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  background-image: url("Assets/menuBackground.svg");
   background-size: cover;
+  background-position: center;
   .title {
-    @include grid-place(3, #{2} / #{4});
     .fish-logo {
       display: block;
       height: 340px;
@@ -72,15 +72,21 @@ img {
       margin-right: auto;
     }
   }
-  #new-session { @include grid-place(2, 4); }
-  #user-lookup { @include grid-place(4, 4); }
+  #new-session-container { margin: 0 auto; }
+  #credits-container { margin: 0 auto; }
 }
 
 #game-screen {
   display: none;
-  @extend %fullscreen-grid;
-  background-image: url("Assets/gameBackground.png");
-  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  grid-template-columns: 5% 115px auto 115px 5%;
+  grid-template-rows: 5% 56px auto 56px 5%;
+  background-image: url("Assets/gameBackground.svg");
+  background-size: cover;
+  background-position: bottom;
   #canvas { font-family: 'Chelsea Market', cursive; }
   #loading-overlay {
     display: flex;
@@ -102,7 +108,14 @@ img {
       }
     }
   }
-  #session-code { @include grid-place(2, 3); }
+  #session-code {
+    @include grid-place(2, 2);
+    color: $text-color  ;
+    font-family: "Chelsea Market", cursive;
+    font-size: 4em;
+    text-shadow: -3px -3px 0 transparentize($text-color-inverted, 0.5);
+    z-index: 2;
+  }
   #settings-button {
     @include grid-place(4, 2);
     z-index: 2;

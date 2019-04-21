@@ -12,11 +12,15 @@
       <div class="title">
         <img class="fish-logo" src="Assets\logo.png">
       </div>
-      <div class="menu-button" id="new-session" onclick="newSession()">
-        <p>New Game
+      <div id="new-session-container">
+        <div class="menu-button" id="new-session" onclick="newSession()">
+          <p>New Game
+        </div>
       </div>
-      <div class="menu-button" id="user-lookup">
-        <p>User Lookup
+      <div id="credits-container">
+        <div class="menu-button" id="credits-access">
+          <p>Credits
+        </div>
       </div>
     </div>
     <div id="game-screen">
@@ -30,7 +34,7 @@
       <div id="settings-menu">
         <div class="settings-back" onclick="displaySettings('none')">X</div>
       </div>
-      <div id="session-code">Code is: </div>
+      <div id="session-code">Code: </div>
       <div class="menu-button" id="back" onclick="backToMenu()">
         <p>Back
       </div>
