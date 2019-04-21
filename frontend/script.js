@@ -43,7 +43,7 @@ function newSession() {
 		{
 			sessionId = res.message;
 			connection.emit('joinSession', sessionId);
-			connection.on('browserJoined', function() {console.log("Successful Connection!")});
+			connection.on('browserJoined', consoleCheck);
 			document.getElementById("session-code").innerHTML = sessionId;
 			//Listen for people to join
 			connection.on('userJoined', createUser);
@@ -68,4 +68,9 @@ function backToMenu() {
 
 function displaySettings(display) {
   document.getElementById("settings-menu").style.display = display;
+}
+
+function consoleCheck()
+{
+	console.log('Successful Connection!');
 }
