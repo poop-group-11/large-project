@@ -7,3 +7,4 @@ node_modules
 .env
 
 frontend/generate-min.bat
+*.min.js
