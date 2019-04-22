@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|EB+Garamond:500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|EB+Garamond|Fresca" rel="stylesheet">
     <meta charset="utf-8"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <title>Hook Game</title>
@@ -18,9 +18,30 @@
         </div>
       </div>
       <div id="credits-container">
-        <div class="menu-button" id="credits-access">
+        <div class="menu-button" id="credits-access" onclick="displayPopUp('credits-popup', 'block')">
           <p>Credits
         </div>
+      </div>
+      <div id="credits-popup">
+        <div class="credits-back" onclick="displayPopUp('credits-popup', 'none')">X</div>
+        <p>This website was made for COP 4331 at the University of Central Florida.
+          Project was made by:
+        <ul>
+          <li>Dominic Canora</li>
+          <li>Lawrence Oks</li>
+          <li>Glenn Ruperto</li>
+          <li>Noah DelGrosso</li>
+          <li>Pradheep Kethi-Reddy</li>
+          <li>Daniel Lu</li>
+          <li>Chandler Epes</li>
+          <li>Chantale Ninah</li>
+        </ul>
+        <p>Credits to the following:
+        <ul>
+          <li>Music: www.bensound.com</li>
+          <li>Sound Effects: www.soundbible.com</li>
+          <li>Fonts: www.fonts.google.com</li>
+        </ul>
       </div>
     </div>
     <div id="game-screen">
@@ -32,13 +53,13 @@
         </div>
       </div>
       <div id="settings-menu">
-        <div class="settings-back" onclick="displaySettings('none')">X</div>
+        <div class="settings-back" onclick="displayPopUp('settings-menu', 'none')">X</div>
       </div>
       <div id="session-code">Code: </div>
       <div class="menu-button" id="back" onclick="backToMenu()">
         <p>Back
       </div>
-      <div class="menu-button" id="settings-button" onclick="displaySettings('block')">
+      <div class="menu-button" id="settings-button" onclick="displayPopUp('settings-menu', 'block')">
         <p>Settings
       </div>
       <div class="menu-button" id="start" onclick="startGame()">

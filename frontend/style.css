@@ -8,6 +8,25 @@ img {
   display: none;
 }
 
+#game-screen #settings-menu, #home-screen #credits-popup {
+  display: none;
+  padding: 10px;
+  width: 480px;
+  height: 480px;
+  position: absolute;
+  margin: -250px 0 0 -250px;
+  top: 50%;
+  left: 50%;
+  background-image: url("Assets/buttonTexture.png");
+  border-radius: 10px;
+  box-shadow: inset 0 0 12px #886a5c, 0 10px 15px rgba(0, 0, 0, 0.35);
+  color: whitesmoke;
+  text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.5);
+  font-family: "EB Garamond", serif;
+  user-select: none;
+  -moz-user-select: -moz-none;
+}
+
 .menu-button {
   position: relative;
   display: inline-block;
@@ -23,6 +42,9 @@ img {
   font-family: "Chelsea Market", cursive;
   font-size: 1em;
   transition: all 100ms ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: -moz-none;
 }
 .menu-button:hover {
   text-shadow: 0 0 5px rgba(245, 245, 245, 0.65), -1px -1px 0 rgba(10, 10, 10, 0.5);
@@ -46,6 +68,8 @@ img {
   background-position: center;
 }
 #home-screen .title .fish-logo {
+  user-select: none;
+  -moz-user-select: -moz-none;
   display: block;
   height: 340px;
   width: auto;
@@ -57,6 +81,14 @@ img {
 }
 #home-screen #credits-container {
   margin: 0 auto;
+}
+#home-screen #credits-popup .credits-back {
+  position: absolute;
+  cursor: pointer;
+  top: 2.5%;
+  right: 2.5%;
+  font-family: "Fresca", san-serif;
+  font-size: 2em;
 }
 
 #game-screen {
@@ -83,10 +115,12 @@ img {
   height: 100%;
   color: whitesmoke;
   grid-column: 1/6;
-  grid-row: 3;
+  grid-row: 1/5;
   z-index: 3;
   font-family: "Chelsea Market", cursive;
   font-size: 1.5em;
+  user-select: none;
+  -moz-user-select: -moz-none;
 }
 #game-screen #loading-overlay #loading-bar {
   width: 100%;
@@ -100,6 +134,8 @@ img {
 #game-screen #session-code {
   grid-column: 2;
   grid-row: 2;
+  user-select: none;
+  -moz-user-select: -moz-none;
   color: whitesmoke;
   font-family: "Chelsea Market", cursive;
   font-size: 4em;
@@ -111,21 +147,13 @@ img {
   grid-row: 2;
   z-index: 2;
 }
-#game-screen #settings-menu {
-  display: none;
-  width: 500px;
-  height: 500px;
-  position: absolute;
-  margin: -250px 0 0 -250px;
-  top: 50%;
-  left: 50%;
-  background-image: url("Assets/buttonTexture.png");
-}
 #game-screen #settings-menu .settings-back {
-  color: whitesmoke;
   position: absolute;
+  cursor: pointer;
   top: 2.5%;
   right: 2.5%;
+  font-family: "Fresca", san-serif;
+  font-size: 2em;
 }
 #game-screen #back {
   grid-column: 2;

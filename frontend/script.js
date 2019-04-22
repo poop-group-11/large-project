@@ -66,8 +66,8 @@ function backToMenu() {
   document.getElementById("game-music").pause();
 }
 
-function displaySettings(display) {
-  document.getElementById("settings-menu").style.display = display;
+function displayPopUp(element, display) {
+  document.getElementById(element).style.display = display;
 }
 
 function consoleCheck()
