@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Session = require("../schemas/sessionSchema.js");
 const User = require("../schemas/userSchema.js");
 var ObjectId = mongoose.Schema.Types.ObjectId;
+var newObjectId = mongoose.Types.ObjectId;
 const middleware = require('../middleware.js');
 
 module.exports = (io) => {
@@ -17,19 +18,27 @@ module.exports = (io) => {
         var { token, sessionCode } = data;
         let user = middleware.decode(token);
         Session.update({_id: sessionCode, userLength: { $lt: 8 }, isStarted: { $lt: 1 } },
-                       { $inc: { userLength: 1 }, $push: { users: ObjectId(user.id) } },
-                       err => {
-                         if(err){
-                          console.log('user unabled to join session: ' + err);
-                          client.send('failedJoin');
-                         }
-                         else {
-                          client.join(sessionCode);
-                          console.log(`client joined room: ${sessionCode}`);
-                          io.to(sessionCode).emit('userJoined', user);
-                          client.send('successfullyJoined', user);
-                         }
-                       });
+          { $inc: { userLength: 1 }, $push: { users: newObjectId(user.id) } },
+          (err, res) => {
+            if(err){
+              console.log('user unabled to join session: ' + err);
+              client.send('joinResponse', "database error");
+            }
+            else if(res.n == 0){
+              console.log("session '" + sessionCode + "' does not exist");
+              client.send('joinResponse', 'dne');
+            }
+            else if(res.nModified == 0){
+              console.log('max users in session ' + sessionCode);
+              client.send('joinResponse', "max");
+            }
+            else {
+              client.join(sessionCode);
+              console.log(`client joined room: ${sessionCode}`);
+              io.to(sessionCode).emit('userJoined', user);
+              client.send('joinResponse', user);
+            }
+          });
 
      });
 
