@@ -35,8 +35,8 @@ function newSession() {
   document.getElementById("settings-menu").style.display ='none';
   document.getElementById("game-music").play();
   //Open socket, listen for join, make hook appear.
-  connection = io('http://localhost');
-  fetch('http://localhost/api/openSession', { method: "POST" })
+  connection = io('https://poopgroup11.xyz');
+  fetch('https://poopgroup11.xyz/api/openSession', { method: "POST" })
 	.then(res => res.json())
 	.then(function(res) {
     if(res.success == true)
