@@ -2,27 +2,47 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|EB+Garamond:500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|EB+Garamond|Fresca" rel="stylesheet">
+    <meta charset="utf-8"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-    <meta charset="utf-8" />
-    <title>Hook Game</title>
+    <title>Leinecker's Leins</title>
+    <link rel="shortcut icon" href="Assets/favicon.ico" />
   </head>
   <body>
     <div id="home-screen">
       <div class="title">
-        <img class="fish-logo" src="Assets\logo.png">
+        <img class="fish-logo" src="Assets\logo.webp">
       </div>
-      <div id="settings-menu">
-        <div class="settings-back" onclick="backToMenu()">X</div>
+      <div id="new-session-container">
+        <div class="menu-button" id="new-session" onclick="newSession()">
+          <p>New Game
+        </div>
       </div>
-      <div class="menu-button" id="new-session" onclick="newSession()">
-        <p>New Game
+      <div id="credits-container">
+        <div class="menu-button" id="credits-access" onclick="displayPopUp('credits-popup', 'block')">
+          <p>Credits
+        </div>
       </div>
-      <div class="menu-button" id="settings-button" onclick="displaySettings()">
-        <p>Settings
-      </div>
-      <div class="menu-button" id="user-lookup">
-        <p>User Lookup
+      <div id="credits-popup">
+        <div class="credits-back" onclick="displayPopUp('credits-popup', 'none')">X</div>
+        <p>This website was made for COP 4331 at the University of Central Florida.
+          Project was made by:
+        <ul>
+          <li>Dominic Canora</li>
+          <li>Lawrence Oks</li>
+          <li>Glenn Ruperto</li>
+          <li>Noah DelGrosso</li>
+          <li>Pradheep Kethi-Reddy</li>
+          <li>Daniel Lu</li>
+          <li>Chandler Epes</li>
+          <li>Chantale Ninah</li>
+        </ul>
+        <p>Credits to the following:
+        <ul>
+          <li>Music: www.bensound.com</li>
+          <li>Sound Effects: www.soundbible.com</li>
+          <li>Fonts: www.fonts.google.com</li>
+        </ul>
       </div>
     </div>
     <div id="game-screen">
@@ -33,9 +53,15 @@
           <div id="progress-bar"></div>
         </div>
       </div>
-      <div id="session-code">Code is: </div>
+      <div id="settings-menu">
+        <div class="settings-back" onclick="displayPopUp('settings-menu', 'none')">X</div>
+      </div>
+      <div id="session-code">Code: </div>
       <div class="menu-button" id="back" onclick="backToMenu()">
         <p>Back
+      </div>
+      <div class="menu-button" id="settings-button" onclick="displayPopUp('settings-menu', 'block')">
+        <p>Settings
       </div>
       <div class="menu-button" id="start" onclick="startGame()">
         <p>Start Game

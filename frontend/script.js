@@ -7,6 +7,8 @@ var hookList = new Object();
 function startGame() {
   document.getElementById("start").style.display = 'none';
   document.getElementById("back").style.display = 'none';
+  document.getElementById("settings-menu").style.display = 'none';
+  document.getElementById("settings-button").style.display = 'none';
   document.getElementById("session-code").style.display = 'none';
   //Start this bad boy up yeyeyeyeyeye
   connection.emit('sessionStart', sessionId);
@@ -34,18 +36,17 @@ function newSession() {
   document.getElementById("game-music").play();
   //Open socket, listen for join, make hook appear.
   connection = io('http://localhost');
-  fetch('https://poopgroup11.xyz/api/openSession', { method: "POST" })
+  fetch('http://localhost/api/openSession', { method: "POST" })
 	.then(res => res.json())
 	.then(function(res) {
     if(res.success == true)
 		{
 			sessionId = res.message;
 			connection.emit('joinSession', sessionId);
-			connection.on('browserJoined', function() {console.log("Successful Connection!")});
-			//TODO: Display the id in the CSS
+			connection.on('browserJoined', consoleCheck);
 			document.getElementById("session-code").innerHTML = sessionId;
 			//Listen for people to join
-			connection.on('userJoined', createUser());
+			connection.on('userJoined', createUser);
 		}
 		else
 		{
@@ -59,12 +60,17 @@ function newSession() {
 }
 
 function backToMenu() {
-  document.getElementById("home-screen").style.display = 'grid';
+  document.getElementById("home-screen").style.display = 'flex';
   document.getElementById("game-screen").style.display = 'none';
   document.getElementById("settings-menu").style.display = 'none';
   document.getElementById("game-music").pause();
 }
 
-function displaySettings() {
-  document.getElementById("settings-menu").style.display = 'block';
+function displayPopUp(element, display) {
+  document.getElementById(element).style.display = display;
+}
+
+function consoleCheck()
+{
+	console.log('Successful Connection!');
 }

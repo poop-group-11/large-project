@@ -22,22 +22,18 @@ function initGame() {
 //Should basically take inputs from users and translate them into game terms for gameplay.
 function listen() {
   //TODO
-  connection.on('casted', (user) => findAndSend(user));
-  connection.on('reeled', (user, direction) => directionDetermine(user, direction));
+  connection.on('casted', findAndSend);
+  connection.on('reeled', directionDetermine);
 }
 
 function directionDetermine(user, direction)
 {
-	if(direction == -1)
-		//TODO: Make hook go up
-		console.log('Hi');
-	else
-		hooks[hookList[user]].castLine();
+	hooks[hookList[user]].castLine(direction);
 }
 
 function findAndSend(user)
 {
-	hooks[hookList[user]].castLine();
+	hooks[hookList[user]].castLine(1);
 }
 
 function drawHooks() {

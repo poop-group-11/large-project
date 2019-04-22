@@ -1,15 +1,10 @@
+$wood-color: #7d6154;
+$text-color: whitesmoke;
+$text-color-inverted: #0a0a0a;
+
 @mixin grid-place($column, $row) {
   grid-column: $column;
   grid-row: $row;
-}
-
-%fullscreen-grid {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  overflow: hidden;
-  grid-template-columns: 5% 7.5% 75% 7.5% 5%;
-  grid-template-rows: 5% 7.5% 75% 7.5% 5%;
 }
 
 html, body {
@@ -22,22 +17,79 @@ img {
   display: none;
 }
 
+%popup-menu {
+  display: none;
+  padding: 10px;
+  width: 480px;
+  height: 480px;
+  position: absolute;
+  margin: -250px 0 0 -250px;
+  top: 50%;
+  left: 50%;
+  background-image: url("Assets/buttonTexture.png");
+  border-radius: 10px;
+  box-shadow: inset 0 0 12px lighten($wood-color, 3.75%),
+              0 10px 15px rgba(0, 0, 0, 0.35);
+  color: $text-color;
+  text-shadow: 1px 1px 2px transparentize($text-color-inverted, 0.5);
+  font-family: 'EB Garamond', serif;
+  user-select: none;
+  -moz-user-select: -moz-none;
+}
+
 .menu-button {
+  position: relative;
+  display: inline-block;
   color: whitesmoke;
+  outline: none;
+  width: 115px;
+  height: 56px;
+  text-shadow: -1px -1px 0 transparentize($text-color-inverted, 0.5);
   text-align: center;
-  border-radius: 15px;
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 1px lighten($wood-color, 3.75%),
+              0 8px 0 darken($wood-color, 7.5%),
+              0 10px 15px rgba(0, 0, 0, 0.35);
   background-image: url("Assets/buttonTexture.png");
   font-family: 'Chelsea Market', cursive;
+  font-size: 1em;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: -moz-none;
+
+  &:hover {
+    text-shadow: 0 0 5px transparentize($text-color, 0.35),
+                 -1px -1px 0 transparentize($text-color-inverted, 0.5);
+    box-shadow: inset 0 -1px 1px lighten($wood-color, 1.875%),
+                0 8px 0 darken($wood-color, 6%),
+                0 10px 15px rgba(0, 0, 0, 0.35);
+  }
+
+  &:active,
+  &:focus {
+    top: 4px;
+    box-shadow: inset 0 -1px 1px lighten($wood-color, 1.875%),
+                0 5px 0 darken($wood-color, 6%),
+                0 10px 15px rgba(0, 0, 0, 0.35);
+  }
 }
 
 #home-screen {
-  display: grid;
-  @extend %fullscreen-grid;
-  background-image: url("Assets/mainMenuBackground.jpg");
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  background-image: url("Assets/menuBackground.svg");
   background-size: cover;
+  background-position: center;
   .title {
-    @include grid-place(3, #{2} / #{4});
     .fish-logo {
+      user-select: none;
+      -moz-user-select: -moz-none;
       display: block;
       height: 340px;
       width: auto;
@@ -45,32 +97,32 @@ img {
       margin-right: auto;
     }
   }
-  #settings-menu {
-    display: none;
-    width: 500px;
-    height: 500px;
-    position: absolute;
-    margin: -250px 0 0 -250px;
-    top: 50%;
-    left: 50%;
-    background-image: url("Assets/buttonTexture.png");
-    .settings-back {
-      color: whitesmoke;
-      position: absolute;
-      top: 2.5%;
-      right: 2.5%;
-    }
+  #new-session-container { margin: 0 auto; }
+  #credits-container { margin: 0 auto; }
+  #credits-popup {
+    @extend %popup-menu;
+    .credits-back {
+       position: absolute;
+       cursor: pointer;
+       top: 2.5%;
+       right: 2.5%;
+       font-family: 'Fresca', san-serif;
+       font-size: 2em;
+     }
   }
-  #new-session { @include grid-place(2, 4); }
-  #settings-button { @include grid-place(4, 2); }
-  #user-lookup { @include grid-place(4, 4); }
 }
 
 #game-screen {
   display: none;
-  @extend %fullscreen-grid;
-  background-image: url("Assets/gameBackground.png");
-  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  grid-template-columns: 5% 115px auto 115px 5%;
+  grid-template-rows: 5% 56px auto 56px 5%;
+  background-image: url("Assets/gameBackground.svg");
+  background-size: cover;
+  background-position: bottom;
   #canvas { font-family: 'Chelsea Market', cursive; }
   #loading-overlay {
     display: flex;
@@ -80,8 +132,12 @@ img {
     width: 100%;
     height: 100%;
     color: whitesmoke;
-    @include grid-place(#{1} / #{6}, #{1} / #{6});
+    @include grid-place(#{1} / #{6}, #{1} / #{5});
     z-index: 3;
+    font-family: 'Chelsea Market', cursive;
+    font-size: 1.5em;
+    user-select: none;
+    -moz-user-select: -moz-none;
     #loading-bar {
       width: 100%;
       background-color: grey;
@@ -92,7 +148,31 @@ img {
       }
     }
   }
-  #session-code { @include grid-place(2, 3); }
+  #session-code {
+    @include grid-place(2, 2);
+    user-select: none;
+    -moz-user-select: -moz-none;
+    color: $text-color  ;
+    font-family: "Chelsea Market", cursive;
+    font-size: 4em;
+    text-shadow: -3px -3px 0 transparentize($text-color-inverted, 0.5);
+    z-index: 2;
+  }
+  #settings-button {
+    @include grid-place(4, 2);
+    z-index: 2;
+  }
+  #settings-menu {
+    @extend %popup-menu;
+    .settings-back {
+      position: absolute;
+      cursor: pointer;
+      top: 2.5%;
+      right: 2.5%;
+      font-family: 'Fresca', san-serif;
+      font-size: 2em;
+    }
+  }
   #back {
     @include grid-place(2, 4);
     z-index: 2;

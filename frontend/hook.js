@@ -29,11 +29,11 @@ class Hook {
     this.length = -this.img.height - 10;
     this.y = this.origin.y + this.length;
   }
-  castLine() {
+  castLine(speed) {
     //set cast state
     this.cast = true;
     //Give an initial velocity?
-    this.dL = 3;
+    this.dL = 10*speed;
     //Play Sound effect
     var snd = new Audio("Assets\\castSound.mp3");
     snd.play();
@@ -80,6 +80,11 @@ class Hook {
         this.length = ctx.canvas.height - this.img.height;
         this.dL = -this.dL;
       }
+	  if(this.dL > 0){
+		  this.dL -= 1;
+	  }else if(this.dL < 0){
+		  this.dL += 1;
+	  }
     }
   }
   catch() {
@@ -96,7 +101,7 @@ class Hook {
 		  winning.score = this.score;
 	  }
 	  
-	  connection.emit('fishCaught', (this.user, fish[this.hooked]));
+	  connection.emit('fishCaught', this.user, fish[this.hooked]);
       fish[this.hooked].respawn();
       this.hooked = -1;
       this.reset();
