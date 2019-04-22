@@ -12,8 +12,9 @@ module.exports = (io) => {
 
      //recieved from mobile, sent to browser
      //client can join if session has less than max users
-     client.on('join', (sessionCode, token) =>
+     client.on('join', (data) =>
      {
+        var { token, sessionCode } = data;
         let user = middleware.decode(token);
         Session.update({_id: sessionCode, userLength: { $lt: 8 }, isStarted: { $lt: 1 } },
                        { $inc: { userLength: 1 }, $push: { users: ObjectId(user.id) } },
