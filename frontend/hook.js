@@ -41,9 +41,6 @@ class Hook {
     this.cast = true;
     //Give an initial velocity?
     this.dL = 10*speed;
-    //Play Sound effect
-    var snd = new Audio("Assets\\castSound.mp3");
-    snd.play();
   }
   draw() {
     //draw the line.
@@ -57,7 +54,7 @@ class Hook {
     //draw the score.
     if( !this.lobby ){
       ctx.font = "30px Chelsea Market";
-      ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 30);  
+      ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 30);
     }
     //Draw hook hitbox.
     /*
@@ -96,27 +93,23 @@ class Hook {
   }
   catch() {
     if(this.hooked != -1 && this.y + this.img.height < 0){
-      //Play sound effect
-      var snd = new Audio("Assets\\caughtFish.mp3");
-      snd.play();
-      //Game Logic
-	  if(fish[this.hooked].name == "jelly")
-	  {console.log('jellies suck');
-		fish[this.hooked].respawn();
-      this.hooked = -1;
-      this.reset();
-		}
-      else{
-		  
-	  this.score += 1;
-	  //Maximizes the winning score
-	  if(this.score > winning.score)
-	  {
-		  winning.user = this.user;
-		  winning.score = this.score;
-	  }
-	  
-		  
+	    if(fish[this.hooked].name == "jelly")
+	    {
+        console.log('jellies suck');
+		    fish[this.hooked].respawn();
+        this.hooked = -1;
+        this.reset();
+		  }
+      else
+      {
+        this.score += 1;
+	      //Maximizes the winning score
+	      if(this.score > winning.score)
+	      {
+		      winning.user = this.user;
+		      winning.score = this.score;
+	      }
+
 	  connection.emit('fishCaught', this.user.id, fish[this.hooked].name, sessionId);
       fish[this.hooked].respawn();
       this.hooked = -1;
