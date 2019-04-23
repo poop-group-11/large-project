@@ -24,21 +24,21 @@ module.exports = (io) => {
           (err, res) => {
             if(err){
               console.log('user unabled to join session: ' + err);
-              io.to(sessionCode).emit('joinResponse', { user: user, success: false, message: "Database Error"});
+              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user._id, success: false, message: "Database Error"});
             }
             else if(res.n == 0){
               console.log("session '" + sessionCode + "' does not exist");
-              io.to(sessionCode).emit('joinResponse', { user: user, success: false, message: "Session " + sessionCode + " Does Not Exist"});
+              io.to(sessionCode).emit('joinResponse', {username: user.username, userid: user._id, success: false, message: "Session " + sessionCode + " Does Not Exist"});
             }
             else if(res.nModified == 0){
               console.log('max users in session ' + sessionCode);
-              io.to(sessionCode).emit('joinResponse', { user: user, success: false, message: "Session " + sessionCode + " Is Full"});
+              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user._id, success: false, message: "Session " + sessionCode + " Is Full"});
             }
             else {
               client.join(sessionCode);
               console.log(`client joined room: ${sessionCode}`);
               io.to(sessionCode).emit('userJoined', user);
-              io.to(sessionCode).emit('joinResponse', { user: user, success: true, message: "Successfully Joined Session " + sessionCode});
+              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user._id, success: true, message: "Successfully Joined Session " + sessionCode});
             }
           });
 
@@ -73,30 +73,30 @@ module.exports = (io) => {
     //recieved from mobile, sent to browser
     //tell everyone that some cast hook  io.emit casthook
     //put hook on screen
-     client.on('castHook', user =>
+     client.on('castHook', userid =>
      {
-          sockets.emit('casted', { user: user});
+          sockets.emit('casted', { userid: userid});
      });
 
      //move the users reel up or down depending on the direction they reel
      //recieved from mobile, sent to browser up or down
-     client.on('reel', (user, direction) =>
+     client.on('reel', (userid, direction) =>
      {
-       sockets.emit('reeled', { user: user, direction: direction});
+       sockets.emit('reeled', { userid: userid, direction: direction});
      });
 
      //if client leaves during game
-     client.on('leave', (sessionCode, user) => {
+     client.on('leave', (sessionCode, userid) => {
       sessionCode = sessionCode.toUpperCase();
       client.leave(sessionCode);
-      io.to(sessionCode).emit('userLeft', user);
+      io.to(sessionCode).emit('userLeft', userid);
      });
 
      //recieved from browser only, then sent to phone
      //tell phone which fish was caught
-     client.on('fishCaught', (user, fish) =>
+     client.on('fishCaught', (userid, fish) =>
      {
-       sockets.emit('caught', { user: user, fish: fish} );
+       sockets.emit('caught', { userid: userid, fish: fish} );
      });
 
      //recieved from browser, session ended
