@@ -21,25 +21,25 @@ module.exports = (io) => {
         sessionCode = sessionCode.toUpperCase();
         let user = middleware.decode(token);
         Session.update({_id: sessionCode, userLength: { $lt: 8 }, isStarted: { $lt: 1 } },
-          { $inc: { userLength: 1 }, $push: { users: newObjectId(user.id) } },
+          { $inc: { userLength: 1 }, $push: { users: newObjectId(user._id) } },
           (err, res) => {
             if(err){
               console.log('user unabled to join session: ' + err);
-              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user._id, success: false, message: "Database Error"});
+              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user.id, success: false, message: "Database Error"});
             }
             else if(res.n == 0){
               console.log("session '" + sessionCode + "' does not exist");
-              io.to(sessionCode).emit('joinResponse', {username: user.username, userid: user._id, success: false, message: "Session " + sessionCode + " Does Not Exist"});
+              io.to(sessionCode).emit('joinResponse', {username: user.username, userid: user.id, success: false, message: "Session " + sessionCode + " Does Not Exist"});
             }
             else if(res.nModified == 0){
               console.log('max users in session ' + sessionCode);
-              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user._id, success: false, message: "Session " + sessionCode + " Is Full"});
+              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user.id, success: false, message: "Session " + sessionCode + " Is Full"});
             }
             else {
               client.join(sessionCode);
               console.log(`client joined room: ${sessionCode}`);
               io.to(sessionCode).emit('userJoined', user);
-              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user._id, success: true, message: "Successfully Joined Session " + sessionCode});
+              io.to(sessionCode).emit('joinResponse', { username: user.username, userid: user.id, success: true, message: "Successfully Joined Session " + sessionCode});
             }
           });
 
