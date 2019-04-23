@@ -16,7 +16,7 @@ module.exports = (io) => {
      client.on('join', (data) =>
      {
 
-       
+
         var { token, sessionCode } = data;
         sessionCode = sessionCode.toUpperCase();
         let user = middleware.decode(token);
@@ -61,7 +61,7 @@ module.exports = (io) => {
      client.on('sessionStart', (sessionCode) =>
      {
       sessionCode = sessionCode.toUpperCase();
-       Session.findByIdAndUpdate(ObjectId(sessionCode), { isStarted: 1 }, err =>{
+       Session.findByIdAndUpdate(ObjectId(sessionCode), { isStarted: 1 }, err => {
        console.log(sessionCode);
        Session.findByIdAndUpdate(sessionCode, { isStarted: 1 }, err =>{
 

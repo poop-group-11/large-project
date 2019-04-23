@@ -11,7 +11,7 @@ let openSession = (req, res) =>
     // var id = shortid.generate;
     // console.log(id);
     let session = new Session();
-    session.isExpired = false;
+    session.isStarted = 0;
     session._id = session._id.substring(0,5);
     session._id = session._id.toUpperCase();
     session.save((err, sesh)  => {
