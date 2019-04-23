@@ -16,8 +16,9 @@ module.exports = (io) => {
      client.on('join', (data) =>
      {
 
-        sessionCode = sessionCode.toUpperCase();
+       
         var { token, sessionCode } = data;
+        sessionCode = sessionCode.toUpperCase();
         let user = middleware.decode(token);
         Session.update({_id: sessionCode, userLength: { $lt: 8 }, isStarted: { $lt: 1 } },
           { $inc: { userLength: 1 }, $push: { users: newObjectId(user.id) } },
