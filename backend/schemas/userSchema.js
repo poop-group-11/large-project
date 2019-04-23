@@ -9,7 +9,7 @@ const UserSchema = new Schema(
     username: String,
     pass: String,
     wins: Number,
-    fish: [{type: Number, ref: 'Fish'}]
+    fish: [0,0,0,0,0,0,0,0,0]
   },
   { timestamps: true }
 );
