@@ -6,6 +6,7 @@ class Fish {
     var fishIndex = Math.floor(Math.random() * fishAssets.length);
     this.img = fishAssets[fishIndex].right;
     this.imgLeft = fishAssets[fishIndex].left;
+    this.name = fishAssets[fishIndex].name;
     this.width = this.img.width;
     this.height = this.img.height;
     //Create coordinate info.
@@ -23,6 +24,7 @@ class Fish {
     var fishIndex = Math.floor(Math.random() * fishAssets.length);
     this.img = fishAssets[fishIndex].right;
     this.imgLeft = fishAssets[fishIndex].left;
+    this.name = fishAssets[fishIndex].name;
     this.width = this.img.width;
     this.height = this.img.height;
     //Reset directional status
