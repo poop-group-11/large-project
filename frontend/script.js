@@ -18,7 +18,7 @@ function startGame() {
 
 function createUser(user) {
   hooks[userCount] = new Hook(user, userCount);
-  hookList[user] = userCount++;
+  hookList[user.id] = userCount++;
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   for(var i = 0; i < userCount; i++){
     hooks[i].origin =  {x: (ctx.canvas.width / (userCount + 1)) * (hooks[i].id + 1) - hooks[i].img.width/2,

@@ -3,6 +3,8 @@ class Hook {
     //Used for identifying the hook for catching fish/controls.
     this.id = id;
     this.user = user;
+	//Used for identifying user from server
+	this.servId = user.id;
     //Draw() information.
     this.img = fishHook;
     //Origin information.
@@ -101,7 +103,7 @@ class Hook {
 		  winning.score = this.score;
 	  }
 	  
-	  connection.emit('fishCaught', this.user, fish[this.hooked]);
+	  connection.emit('fishCaught', this.user.id, fish[this.hooked].name);
       fish[this.hooked].respawn();
       this.hooked = -1;
       this.reset();

@@ -26,14 +26,14 @@ function listen() {
   connection.on('reeled', directionDetermine);
 }
 
-function directionDetermine(user, direction)
+function directionDetermine(userid, direction)
 {
-	hooks[hookList[user]].castLine(direction);
+	hooks[hookList[userid]].castLine(direction);
 }
 
 function findAndSend(user)
 {
-	hooks[hookList[user]].castLine(1);
+	hooks[hookList[userid]].castLine(1);
 }
 
 function drawHooks() {
@@ -82,7 +82,7 @@ function talk() {
   if(winning.score >= scoreGoal)
   {
 	  //console.log('Game should end');
-	  connection.emit('endSession', (sessionId, winning.user));
+	  connection.emit('endSession', sessionId, winning.user.id);
   }
 }
 
