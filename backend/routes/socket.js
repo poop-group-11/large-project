@@ -74,7 +74,7 @@ module.exports = (io) => {
     //put hook on screen
      client.on('castHook', data =>
      {
-       console.log("cast hook; " + data.userid)
+       console.log("cast hook; " + data.userid + " sessionCode: " + data.sessionCode);
        io.to(data.sessionCode).emit('casted', data.userid);
      });
 
