@@ -31,6 +31,11 @@ class Hook {
     this.length = -this.img.height - 10;
     this.y = this.origin.y + this.length;
   }
+  totalReset(){
+	  this.cast = false;
+	  this.score = 0;
+	  this.lobby = true;
+  }
   castLine(speed) {
     //set cast state
     this.cast = true;
@@ -95,7 +100,15 @@ class Hook {
       var snd = new Audio("Assets\\caughtFish.mp3");
       snd.play();
       //Game Logic
-      this.score += 1;
+	  if(fish[this.hooked].name == "jelly")
+	  {console.log('jellies suck');
+		fish[this.hooked].respawn();
+      this.hooked = -1;
+      this.reset();
+		}
+      else{
+		  
+	  this.score += 1;
 	  //Maximizes the winning score
 	  if(this.score > winning.score)
 	  {
@@ -103,11 +116,12 @@ class Hook {
 		  winning.score = this.score;
 	  }
 	  
-	  connection.emit('fishCaught', this.user.id, fish[this.hooked].name);
+		  
+	  connection.emit('fishCaught', this.user.id, fish[this.hooked].name, sessionId);
       fish[this.hooked].respawn();
       this.hooked = -1;
       this.reset();
-	  
+	  }
     }
   }
 }
