@@ -34,7 +34,7 @@ function changevolume() {
     var y = x / 100;
 
     sound.volume = y;
-  }  
+  }
 }
 
 function createUser(user) {
@@ -88,17 +88,10 @@ function restartSession()
   document.getElementById("session-code").style.display = 'initial';
   document.getElementById("game-music").play();
   document.getElementById("session-code").innerHTML = sessionId;
-  for(var i = 0; i < userCount; i++){
-	hooks[i].totalReset();
-	hooks[i].length = 50;
-    hooks[i].origin =  {x: (ctx.canvas.width / (userCount + 1)) * (hooks[i].id + 1) - hooks[i].img.width/2,
-                   y: 0}
-    hooks[i].x = hooks[i].origin.x - hooks[i].img.width/2;
-    hooks[i].y = hooks[i].origin.y + hooks[i].length;
-    hooks[i].draw();
-  };
+  hooks = [];
+  hookList = new Object();
   fish = [];
-  
+
    connection.on('userJoined', createUser);
 
  }
