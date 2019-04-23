@@ -136,8 +136,7 @@ module.exports = class UserController
     }
 
     caughtFish(req, res) {
-
-      User.update({ _id:req.decoded.id }, { $push: { fish: { $each: req.body.fish } } }, err => {
+      User.update({ _id:req.decoded.id }, { fish: req.body.fish }, err => {
         if(err){
           console.log('error adding fish to database. error: ' + err);
           return res.json({ success: false, message: 'ERROR ADDING FISH TO DATABASE', error: err });

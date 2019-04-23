@@ -14,6 +14,7 @@ module.exports = (io) => {
      //client can join if session has less than max users
      client.on('join', (sessionCode, token) =>
      {
+        sessionCode = sessionCode.toUpperCase();
         let user = middleware.decode(token);
         Session.update({_id: ObjectId(sessionCode), userLength: { $lt: 8 }, isStarted: { $lt: 1 } },
                        { $inc: { userLength: 1 }, $push: { users: ObjectId(user.id) } },
@@ -35,6 +36,7 @@ module.exports = (io) => {
      //for browser ONLY to join session room
      client.on('joinSession', (sessionCode) =>
      {
+      sessionCode = sessionCode.toUpperCase();
       client.join(sessionCode);
       console.log("browser joined room " + sessionCode);
       io.to(sessionCode).emit('browserJoined');
@@ -46,6 +48,7 @@ module.exports = (io) => {
      //use this to update the users
      client.on('sessionStart', (sessionCode) =>
      {
+      sessionCode = sessionCode.toUpperCase();
        Session.findByIdAndUpdate(ObjectId(sessionCode), { isStarted: 1 }, err =>{
         if(err) console.log(err);
        });
@@ -70,6 +73,7 @@ module.exports = (io) => {
 
      //if client leaves during game
      client.on('leave', (sessionCode, user) => {
+      sessionCode = sessionCode.toUpperCase();
       client.leave(sessionCode);
       io.to(sessionCode).emit('userLeft', user);
      });
@@ -84,6 +88,7 @@ module.exports = (io) => {
      //recieved from browser, session ended
      client.on('endSession', (sessionCode, winner) =>
      {
+       sessionCode = sessionCode.toUpperCase();
        io.to(sessionCode).emit('sessionEnded', winner);
 
        //make all clients leave room
