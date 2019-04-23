@@ -97,7 +97,7 @@ module.exports = (io) => {
      //tell phone which fish was caught
      client.on('fishCaught', (userid, fish, sessionCode) =>
      {
-      console.log("fishCaught: " + fish);
+      console.log("fishCaught: " + fish + " sessionCode: " + sessionCode.toUpperCase());
 
        io.to(sessionCode.toUpperCase()).emit('caught', { userid: userid, fish: fish} );
      });
