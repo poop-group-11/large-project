@@ -72,16 +72,18 @@ module.exports = (io) => {
     //recieved from mobile, sent to browser
     //tell everyone that some cast hook  io.emit casthook
     //put hook on screen
-     client.on('castHook', userid =>
+     client.on('castHook', data =>
      {
-          sockets.emit('casted', { userid: userid});
+       console.log("cast hook; " + userid)
+       io.to(data.sessionCode).emit('casted', { userid: data.userid});
      });
 
      //move the users reel up or down depending on the direction they reel
      //recieved from mobile, sent to browser up or down
      client.on('reel', data =>
      {
-       sockets.emit('reeled', { userid: data.userid, direction: data.direction});
+       console.log("reel: " + data.userid);
+       io.to(data.sessionCode).emit('reeled', { userid: data.userid, direction: data.direction});
      });
 
      //if client leaves during game
