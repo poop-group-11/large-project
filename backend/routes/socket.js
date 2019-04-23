@@ -75,7 +75,7 @@ module.exports = (io) => {
      client.on('castHook', data =>
      {
        console.log("cast hook; " + userid)
-       io.to(data.sessionCode).emit('casted', { userid: data.userid});
+       io.to(data.sessionCode).emit('casted', data.userid);
      });
 
      //move the users reel up or down depending on the direction they reel
@@ -83,7 +83,7 @@ module.exports = (io) => {
      client.on('reel', data =>
      {
        console.log("reel: " + data.userid);
-       io.to(data.sessionCode).emit('reeled', { userid: data.userid, direction: data.direction});
+       io.to(data.sessionCode).emit('reeled', data.userid, data.direction);
      });
 
      //if client leaves during game
@@ -95,9 +95,9 @@ module.exports = (io) => {
 
      //recieved from browser only, then sent to phone
      //tell phone which fish was caught
-     client.on('fishCaught', (userid, fish) =>
+     client.on('fishCaught', (userid, fish, sessionCode) =>
      {
-       sockets.emit('caught', { userid: userid, fish: fish} );
+       io.to(sessionCode).emit('caught', { userid: userid, fish: fish} );
      });
 
      //recieved from browser, session ended
