@@ -8,7 +8,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 // Create Schema and Model
 const SessionSchema = new Schema(
   {
-    _id: {'type': String, 'default': shortid.generate.toUpperCase()},
+    _id: {'type': String, 'default': shortid.generate},
     isStarted: Number,
     users:  [{type:ObjectId, ref: 'User'}],
     userLength: {'type': Number, 'default': 0},

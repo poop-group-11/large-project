@@ -64,10 +64,10 @@ module.exports = (io) => {
        console.log(sessionCode);
        Session.findByIdAndUpdate(sessionCode, { isStarted: 1 }, err =>{
 
-        if(err) console.log(err);
-       });
-
-       io.to(sessionCode).emit('startSession');
+          if(err) console.log(err);
+        });
+        io.to(sessionCode).emit('startSession');
+      });
      });
 
     //recieved from mobile, sent to browser
