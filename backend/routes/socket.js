@@ -60,15 +60,13 @@ module.exports = (io) => {
      //use this to update the users
      client.on('sessionStart', (sessionCode) =>
      {
-      sessionCode = sessionCode.toUpperCase();
-       Session.findByIdAndUpdate(ObjectId(sessionCode), { isStarted: 1 }, err => {
        console.log(sessionCode);
+       sessionCode = sessionCode.toUpperCase();
+       console.log("upper case: " + sessionCode);
        Session.findByIdAndUpdate(sessionCode, { isStarted: 1 }, err =>{
-
           if(err) console.log(err);
         });
         io.to(sessionCode).emit('startSession');
-      });
      });
 
     //recieved from mobile, sent to browser
