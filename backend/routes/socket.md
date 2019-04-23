@@ -5,7 +5,7 @@
 * from: mobile
 * event:`join`
 * data: `sessionCode` , `token`
-* emits: `successfullyJoined`, data: `user` OR `failedJoin` for mobile
+* emits: `joinResponse`, data: { user, success (boolean), message} for mobile
          `userJoined`, data: `user` for browser to update session screen
 
 ## Leave Channels

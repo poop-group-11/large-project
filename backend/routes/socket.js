@@ -24,21 +24,21 @@ module.exports = (io) => {
           (err, res) => {
             if(err){
               console.log('user unabled to join session: ' + err);
-              client.send('joinResponse', "database error");
+              io.to(sessionCode).emit('joinResponse', { user: user, success: false, message: "Database Error"});
             }
             else if(res.n == 0){
               console.log("session '" + sessionCode + "' does not exist");
-              client.send('joinResponse', 'dne');
+              io.to(sessionCode).emit('joinResponse', { user: user, success: false, message: "Session " + sessionCode + " Does Not Exist"});
             }
             else if(res.nModified == 0){
               console.log('max users in session ' + sessionCode);
-              client.send('joinResponse', "max");
+              io.to(sessionCode).emit('joinResponse', { user: user, success: false, message: "Session " + sessionCode + " Is Full"});
             }
             else {
               client.join(sessionCode);
               console.log(`client joined room: ${sessionCode}`);
               io.to(sessionCode).emit('userJoined', user);
-              client.send('joinResponse', user);
+              io.to(sessionCode).emit('joinResponse', { user: user, success: true, message: "Successfully Joined Session " + sessionCode});
             }
           });
 
