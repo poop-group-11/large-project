@@ -20,10 +20,7 @@ img {
 %popup-menu {
   display: none;
   padding: 10px;
-  width: 480px;
-  height: 480px;
   position: absolute;
-  margin: -250px 0 0 -250px;
   top: 50%;
   left: 50%;
   background-image: url("Assets/buttonTexture.png");
@@ -101,6 +98,8 @@ img {
   #credits-container { margin: 0 auto; }
   #credits-popup {
     @extend %popup-menu;
+    width: 480px;
+    margin: -250px 0 0 -250px;
     .credits-back {
        position: absolute;
        cursor: pointer;
@@ -149,7 +148,7 @@ img {
     }
   }
   #session-code {
-    @include grid-place(2, 2);
+    @include grid-place(#{2} / #{4}, 2);
     user-select: none;
     -moz-user-select: -moz-none;
     color: $text-color  ;
@@ -164,11 +163,15 @@ img {
   }
   #settings-menu {
     @extend %popup-menu;
+    font-size: 1.5em;
+    width: 190px;
+    height: 190px;
+    margin: -100px 0 0 -100px;
     .settings-back {
       position: absolute;
       cursor: pointer;
-      top: 2.5%;
-      right: 2.5%;
+      top: 5px;
+      right: 10px;
       font-family: 'Fresca', san-serif;
       font-size: 2em;
     }

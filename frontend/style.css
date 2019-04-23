@@ -11,10 +11,7 @@ img {
 #game-screen #settings-menu, #home-screen #credits-popup {
   display: none;
   padding: 10px;
-  width: 480px;
-  height: 480px;
   position: absolute;
-  margin: -250px 0 0 -250px;
   top: 50%;
   left: 50%;
   background-image: url("Assets/buttonTexture.png");
@@ -82,6 +79,10 @@ img {
 #home-screen #credits-container {
   margin: 0 auto;
 }
+#home-screen #credits-popup {
+  width: 480px;
+  margin: -250px 0 0 -250px;
+}
 #home-screen #credits-popup .credits-back {
   position: absolute;
   cursor: pointer;
@@ -132,7 +133,7 @@ img {
   background-color: green;
 }
 #game-screen #session-code {
-  grid-column: 2;
+  grid-column: 2/4;
   grid-row: 2;
   user-select: none;
   -moz-user-select: -moz-none;
@@ -147,11 +148,17 @@ img {
   grid-row: 2;
   z-index: 2;
 }
+#game-screen #settings-menu {
+  font-size: 1.5em;
+  width: 190px;
+  height: 190px;
+  margin: -100px 0 0 -100px;
+}
 #game-screen #settings-menu .settings-back {
   position: absolute;
   cursor: pointer;
-  top: 2.5%;
-  right: 2.5%;
+  top: 5px;
+  right: 10px;
   font-family: "Fresca", san-serif;
   font-size: 2em;
 }

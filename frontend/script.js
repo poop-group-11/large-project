@@ -1,6 +1,8 @@
 var connection;
 var sessionId;
 
+var timer = null;
+
 var hooks = [];
 var hookList = new Object();
 
@@ -14,6 +16,25 @@ function startGame() {
   connection.emit('sessionStart', sessionId);
   initGame();
   draw();
+}
+
+function changevolume() {
+  var sound = document.getElementById('game-music');
+  var volu3 = document.getElementById('vol-control');
+  var checkbox = document.getElementById('un-mute');
+
+  if (checkbox.checked == 1)
+  {
+    sound.volume = 0;
+  }
+
+  else
+  {
+    var x = volu3.value;
+    var y = x / 100;
+
+    sound.volume = y;
+  }  
 }
 
 function createUser(user) {
