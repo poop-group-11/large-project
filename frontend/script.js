@@ -1,8 +1,6 @@
 var connection;
 var sessionId;
 
-var timer = null;
-
 var hooks = [];
 var hookList = new Object();
 
@@ -34,7 +32,7 @@ function changevolume() {
     var y = x / 100;
 
     sound.volume = y;
-  }  
+  }
 }
 
 function createUser(user) {
