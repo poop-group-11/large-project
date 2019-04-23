@@ -13,10 +13,6 @@ html, body {
   margin: 0px;
 }
 
-body::after {
-  content: url("Assets/gameBackground.svg");
-}
-
 img {
   display: none;
 }
