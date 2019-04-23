@@ -31,7 +31,7 @@ function directionDetermine(userid, direction)
 	hooks[hookList[userid]].dL = 10 * direction;
 }
 
-function findAndSend(user)
+function findAndSend(userid)
 {
 	hooks[hookList[userid]].castLine(1);
 }
