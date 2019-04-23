@@ -149,7 +149,7 @@ img {
     }
   }
   #session-code {
-    @include grid-place(2, 2);
+    @include grid-place(#{2} / #{4}, 2);
     user-select: none;
     -moz-user-select: -moz-none;
     color: $text-color  ;
