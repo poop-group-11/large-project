@@ -75,7 +75,7 @@ module.exports = (io) => {
      client.on('castHook', data =>
      {
        console.log("cast hook; " + data.userid + " sessionCode: " + data.sessionCode);
-       io.to(data.sessionCode).emit('casted', data.userid);
+       io.to(data.sessionCode.toUpperCase()).emit('casted', data.userid);
      });
 
      //move the users reel up or down depending on the direction they reel
@@ -83,7 +83,7 @@ module.exports = (io) => {
      client.on('reel', data =>
      {
        console.log("reel: " + data.userid);
-       io.to(data.sessionCode).emit('reeled', data.userid, data.direction);
+       io.to(data.sessionCode.toUpperCase()).emit('reeled', data.userid, data.direction);
      });
 
      //if client leaves during game
