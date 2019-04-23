@@ -28,7 +28,7 @@ function listen() {
 
 function directionDetermine(userid, direction)
 {
-	hooks[hookList[userid]].castLine(direction);
+	hooks[hookList[userid]].dL = 10 * direction;
 }
 
 function findAndSend(user)
@@ -83,6 +83,7 @@ function talk() {
   {
 	  //console.log('Game should end');
 	  connection.emit('endSession', sessionId, winning.user.id);
+	  restartSession();
   }
 }
 
