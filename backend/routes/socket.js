@@ -81,16 +81,16 @@ module.exports = (io) => {
 
      //move the users reel up or down depending on the direction they reel
      //recieved from mobile, sent to browser up or down
-     client.on('reel', (userid, direction) =>
+     client.on('reel', data =>
      {
-       sockets.emit('reeled', { userid: userid, direction: direction});
+       sockets.emit('reeled', { userid: data.userid, direction: data.direction});
      });
 
      //if client leaves during game
-     client.on('leave', (sessionCode, userid) => {
-      sessionCode = sessionCode.toUpperCase();
+     client.on('leave', data => {
+      sessionCode = data.sessionCode.toUpperCase();
       client.leave(sessionCode);
-      io.to(sessionCode).emit('userLeft', userid);
+      io.to(sessionCode).emit('userLeft', data.userid);
      });
 
      //recieved from browser only, then sent to phone
