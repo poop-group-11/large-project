@@ -5,3 +5,6 @@ node_modules
 *.log
 
 .env
+
+frontend/generate-min.bat
+*.min.js

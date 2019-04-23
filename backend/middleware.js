@@ -38,5 +38,6 @@ let decode = (token) =>
 }
 
 module.exports = {
-  checkToken: checkToken
+  checkToken: checkToken,
+  decode: decode
 }
