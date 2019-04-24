@@ -56,7 +56,7 @@ class Fish {
         this.respawn();
       }
       //Bounce off floor or top of water.
-      if(this.y + this.height > ctx.canvas.height || this.y < 0){
+      if(this.y + this.height > ctx.canvas.height || this.y < 0 + this.height){
         this.dY = -this.dY
       }
     } else {
