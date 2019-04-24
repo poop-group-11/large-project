@@ -14,7 +14,7 @@ function initGame() {
   for(var i = 0; i < fishCount; i++){
     fish[i] = new Fish(i);
   }
-  
+
   winning.score = 0;
 }
 
@@ -81,6 +81,9 @@ function talk() {
   //TODO
   if(winning.score >= scoreGoal)
   {
+    //Edit HTML to show winner
+    document.getElementById("winner-name").innerHTML = winner.user.username + " wins!";
+    document.getElementById("winner-display").style.display = "flex";
 	  //console.log('Game should end');
 	  connection.emit('endSession', sessionId, winning.user.id);
 	  restartSession();

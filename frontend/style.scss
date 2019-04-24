@@ -161,6 +161,22 @@ img {
     @include grid-place(4, 2);
     z-index: 2;
   }
+  #winner-display {
+    @extend %popup-menu;
+    font-size: 1.5em;
+    width: 190px;
+    height: auto;
+    margin: -100px 0 0 -100px;
+    justify-content: center;
+    .winner-back {
+      position: absolute;
+      cursor: pointer;
+      top: 5px;
+      right: 10px;
+      font-family: 'Fresca', san-serif;
+      font-size: 2em;
+    }
+  }
   #settings-menu {
     @extend %popup-menu;
     font-size: 1.5em;

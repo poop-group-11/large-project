@@ -8,7 +8,7 @@ img {
   display: none;
 }
 
-#game-screen #settings-menu, #home-screen #credits-popup {
+#game-screen #settings-menu, #game-screen #winner-display, #home-screen #credits-popup {
   display: none;
   padding: 10px;
   position: absolute;
@@ -147,6 +147,21 @@ img {
   grid-column: 4;
   grid-row: 2;
   z-index: 2;
+}
+#game-screen #winner-display {
+  font-size: 1.5em;
+  width: 190px;
+  height: auto;
+  margin: -100px 0 0 -100px;
+  justify-content: center;
+}
+#game-screen #winner-display .winner-back {
+  position: absolute;
+  cursor: pointer;
+  top: 5px;
+  right: 10px;
+  font-family: "Fresca", san-serif;
+  font-size: 2em;
 }
 #game-screen #settings-menu {
   font-size: 1.5em;
