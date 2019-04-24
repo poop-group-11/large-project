@@ -11,7 +11,7 @@ class Fish {
     this.height = this.img.height;
     //Create coordinate info.
     this.x = Math.floor(Math.random() * ctx.canvas.width); //random x position.
-    this.y = Math.floor(Math.random() * (ctx.canvas.height - this.height)); //random y position.
+    this.y = Math.floor(Math.random() * (ctx.canvas.height - this.height - 50) + 50); //random y position.
     this.dX = Math.floor(Math.random() * (4 - (1))) + (1); //Random inital value.
     this.dY = Math.floor(Math.random() * (4 - (-4))) + (-4); //random initial value.
     //Hooked information.
@@ -35,7 +35,7 @@ class Fish {
     } else {
       this.x = ctx.canvas.width; //Reset to right side of screen.
     }
-    this.y = Math.floor(Math.random() * (ctx.canvas.height - this.height)); //random y position.
+    this.y = Math.floor(Math.random() * (ctx.canvas.height - this.height - 50) + 50); //random y position.
     this.dX = Math.floor(Math.random() * (4 - (1))) + (1); //Random inital value.
     this.dY = Math.floor(Math.random() * (4 - (-4))) + (-4); //random initial value.
     //Reset hooked status
@@ -56,7 +56,7 @@ class Fish {
         this.respawn();
       }
       //Bounce off floor or top of water.
-      if(this.y + this.height > ctx.canvas.height || this.y < 0 + this.height){
+      if(this.y + this.height > ctx.canvas.height || this.y < 0 + 50){
         this.dY = -this.dY
       }
     } else {
