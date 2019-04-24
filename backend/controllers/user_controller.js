@@ -113,7 +113,6 @@ module.exports = class UserController
               //passwords don't match
               return res.json({
                 success: false,
-                error: error,
                 message: "password provided was incorrect"
               });
             }
