@@ -115,7 +115,7 @@ module.exports = (io) => {
        });
 
        //update dataabase with session winner
-       Session.findByIdAndUpdate(sessionCode, { winner: ObjectId(winner) }, err => {
+       Session.findByIdAndUpdate(sessionCode, { winner: newObjectId(winner) }, err => {
         if(err) console.log(err)
        });
 
