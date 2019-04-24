@@ -72,6 +72,7 @@ module.exports = (io) => {
      });
 
      client.on('reconnect', (data) => {
+       console.log("reconnecting to " + sessionCode.toUpperCase());
        client.join(data.sessionCode.toUpperCase());
      });
 
