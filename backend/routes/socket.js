@@ -90,15 +90,16 @@ module.exports = (io) => {
      client.on('leave', (data) => {
       sessionCode = data.sessionCode.toUpperCase();
       client.leave(sessionCode);
-      io.to(sessionCode).emit('userLeft', data.userid);
+      io.to(sessionCode.toUpperCase()).emit('userLeft', data.userid);
      });
 
      //recieved from browser only, then sent to phone
      //tell phone which fish was caught
      client.on('fishCaught', (userid, fish, sessionCode) =>
      {
-       console.log("fishCaught: " + fish + " sessionCode: " + sessionCode.toUpperCase());
-       io.to(sessionCode.toUpperCase()).emit('caught', {userid: userid, fish: fish});
+       sessionCode = sessionCode.toUpperCase();
+       console.log("fishCaught: " + fish + " sessionCode: " + sessionCode);
+       io.to(sessionCode).emit('pineapples', {userid: userid, fish: fish});
        console.log("emmitted fish caught");
      });
 
@@ -115,11 +116,11 @@ module.exports = (io) => {
        });
 
        //update dataabase with session winner
-       Session.findByIdAndUpdate(sessionCode, { winner: ObjectId(winner) }, err => {
+       Session.findByIdAndUpdate(sessionCode, { winner: newObjectId(winner) }, err => {
         if(err) console.log(err)
        });
 
-       User.findByIdAndUpdate(ObjectId(winner), { $inc: { wins: 1 } }, err => {
+       User.findByIdAndUpdate(newObjectId(winner), { $inc: { wins: 1 } }, err => {
         if(err) console.log(err);
        });
 
