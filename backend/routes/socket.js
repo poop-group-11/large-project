@@ -11,6 +11,8 @@ module.exports = (io) => {
      console.log('someone connected');
 
 
+
+
      //recieved from mobile, sent to browser
      //client can join if session has less than max users
      client.on('join', (data) =>
@@ -67,6 +69,10 @@ module.exports = (io) => {
           if(err) console.log(err);
         });
         io.to(sessionCode).emit('startSession');
+     });
+
+     client.on('reconnect', (data) => {
+       client.join(data.sessionCode.toUpperCase());
      });
 
     //recieved from mobile, sent to browser
