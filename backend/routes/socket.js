@@ -72,7 +72,7 @@ module.exports = (io) => {
     //recieved from mobile, sent to browser
     //tell everyone that some cast hook  io.emit casthook
     //put hook on screen
-     client.on('castHook', data =>
+     client.on('castHook', (data) =>
      {
        console.log("cast hook; " + data.userid + " sessionCode: " + data.sessionCode);
        io.to(data.sessionCode.toUpperCase()).emit('casted', data.userid);
@@ -80,14 +80,14 @@ module.exports = (io) => {
 
      //move the users reel up or down depending on the direction they reel
      //recieved from mobile, sent to browser up or down
-     client.on('reel', data =>
+     client.on('reel', (data) =>
      {
        console.log("reel: " + data.userid);
        io.to(data.sessionCode.toUpperCase()).emit('reeled', data.userid, data.direction);
      });
 
      //if client leaves during game
-     client.on('leave', data => {
+     client.on('leave', (data) => {
       sessionCode = data.sessionCode.toUpperCase();
       client.leave(sessionCode);
       io.to(sessionCode).emit('userLeft', data.userid);
