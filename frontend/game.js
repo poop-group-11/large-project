@@ -17,12 +17,13 @@ function initGame() {
   winning.username = hooks[0].username;
   winning.userId = hooks[0].servId;
   winning.score = 0;
+  winning.on = 1;
 }
 
 //This function is intended for the frontend guys to fill with whatever logic they need.
 //Should basically take inputs from users and translate them into game terms for gameplay.
 function listen() {
-  //TODO
+
   connection.on('casted', findAndSend);
   connection.on('reeled', directionDetermine);
 }
@@ -80,14 +81,14 @@ function collision() {
 //Should contain logic to send whatever necessary information to users/websocket.
 function talk() {
   //TODO
-  if(winning.score >= scoreGoal)
+  if(winning.score >= scoreGoal && winning.on == 1)
   {
     //Edit HTML to show winner
     document.getElementById("winner-name").innerHTML = winning.username + " wins!";
     document.getElementById("winner-display").style.display = "flex";
 	  //console.log('Game should end');
 	  connection.emit('endSession', sessionId, winning.userId);
-	  restartSession();
+	  winning.on = 0;
   }
 }
 
