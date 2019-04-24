@@ -47,7 +47,7 @@ class Hook {
     ctx.beginPath();
     ctx.moveTo(this.origin.x, this.origin.y);
     ctx.lineTo(this.origin.x, this.origin.y + this.length);
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 2;
     ctx.strokeStyle = "black";
     ctx.stroke();
     ctx.closePath();
