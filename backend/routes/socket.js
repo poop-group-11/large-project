@@ -119,7 +119,7 @@ module.exports = (io) => {
         if(err) console.log(err)
        });
 
-       User.findByIdAndUpdate(ObjectId(winner), { $inc: { wins: 1 } }, err => {
+       User.findByIdAndUpdate(newObjectId(winner), { $inc: { wins: 1 } }, err => {
         if(err) console.log(err);
        });
 
