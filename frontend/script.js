@@ -50,6 +50,7 @@ function createUser(user) {
   };
 }
 
+
 function newSession() {
   document.getElementById("home-screen").style.display = 'none';
   document.getElementById("game-screen").style.display = 'grid';
@@ -80,21 +81,6 @@ function newSession() {
   loadAssets();
 }
 
-function restartSession()
-{
-  document.getElementById("start").style.display = 'initial';
-  document.getElementById("back").style.display = 'initial';
-  document.getElementById("settings-button").style.display = 'initial';
-  document.getElementById("session-code").style.display = 'initial';
-  document.getElementById("game-music").play();
-  document.getElementById("session-code").innerHTML = sessionId;
-  hooks = [];
-  hookList = new Object();
-  fish = [];
-
-   connection.on('userJoined', createUser);
-
- }
 
 function backToMenu() {
   document.getElementById("home-screen").style.display = 'flex';
