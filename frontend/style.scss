@@ -168,13 +168,14 @@ img {
     height: auto;
     margin: -100px 0 0 -100px;
     justify-content: center;
+    font-size: 1.5em;
     .winner-back {
       position: absolute;
       cursor: pointer;
       top: 5px;
       right: 10px;
       font-family: 'Fresca', san-serif;
-      font-size: 2em;
+      font-size: 1em;
     }
   }
   #settings-menu {
