@@ -107,11 +107,12 @@ class Hook {
 	      //Maximizes the winning score
 	      if(this.score > winning.score)
 	      {
-		      winning.user = this.user;
+			  winning.username = this.user.username;
+		      winning.userId = this.servId;
 		      winning.score = this.score;
 	      }
 
-	  connection.emit('fishCaught', this.user.id, fish[this.hooked].name, sessionId);
+	  connection.emit('fishCaught', this.servId, fish[this.hooked].name, sessionId);
       fish[this.hooked].respawn();
       this.hooked = -1;
       this.reset();
