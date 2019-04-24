@@ -52,10 +52,10 @@ class Hook {
     ctx.stroke();
     ctx.closePath();
     //draw the score.
-    ctx.font = "30px Chelsea Market";
-    ctx.fillText(this.user.username, this.origin.x, this.origin.y + 30);
+    ctx.font = "20px Chelsea Market";
+    ctx.fillText(this.user.username, this.origin.x + 5, this.origin.y + 20);
     if( !this.lobby ){
-      ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 60);
+      ctx.fillText("Score:" + this.score.toString(), this.origin.x + 5, this.origin.y + 40);
     }
     //Draw hook hitbox.
     /*
