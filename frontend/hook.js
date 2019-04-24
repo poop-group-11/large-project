@@ -47,14 +47,15 @@ class Hook {
     ctx.beginPath();
     ctx.moveTo(this.origin.x, this.origin.y);
     ctx.lineTo(this.origin.x, this.origin.y + this.length);
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 2;
     ctx.strokeStyle = "black";
     ctx.stroke();
     ctx.closePath();
     //draw the score.
+    ctx.font = "20px Chelsea Market";
+    ctx.fillText(this.user.username, this.origin.x + 5, this.origin.y + 20);
     if( !this.lobby ){
-      ctx.font = "30px Chelsea Market";
-      ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 30);
+      ctx.fillText("Score:" + this.score.toString(), this.origin.x + 5, this.origin.y + 40);
     }
     //Draw hook hitbox.
     /*
@@ -106,11 +107,12 @@ class Hook {
 	      //Maximizes the winning score
 	      if(this.score > winning.score)
 	      {
-		      winning.user = this.user;
+			  winning.username = this.user.username;
+		      winning.userId = this.servId;
 		      winning.score = this.score;
 	      }
 
-	  connection.emit('fishCaught', this.user.id, fish[this.hooked].name, sessionId);
+	  connection.emit('fishCaught', this.servId, fish[this.hooked].name, sessionId);
       fish[this.hooked].respawn();
       this.hooked = -1;
       this.reset();
