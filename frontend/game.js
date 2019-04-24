@@ -14,7 +14,8 @@ function initGame() {
   for(var i = 0; i < fishCount; i++){
     fish[i] = new Fish(i);
   }
-
+  winning.username = hooks[0].username;
+  winning.userId = hooks[0].servId;
   winning.score = 0;
 }
 
@@ -82,10 +83,10 @@ function talk() {
   if(winning.score >= scoreGoal)
   {
     //Edit HTML to show winner
-    document.getElementById("winner-name").innerHTML = winner.user.username + " wins!";
+    document.getElementById("winner-name").innerHTML = winning.username + " wins!";
     document.getElementById("winner-display").style.display = "flex";
 	  //console.log('Game should end');
-	  connection.emit('endSession', sessionId, winning.user.id);
+	  connection.emit('endSession', sessionId, winning.userId);
 	  restartSession();
   }
 }
