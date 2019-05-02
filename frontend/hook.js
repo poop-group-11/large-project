@@ -3,6 +3,8 @@ class Hook {
     //Used for identifying the hook for catching fish/controls.
     this.id = id;
     this.user = user;
+	//Used for identifying user from server
+	this.servId = user.id;
     //Draw() information.
     this.img = fishHook;
     //Origin information.
@@ -29,28 +31,31 @@ class Hook {
     this.length = -this.img.height - 10;
     this.y = this.origin.y + this.length;
   }
+  totalReset(){
+	  this.cast = false;
+	  this.score = 0;
+	  this.lobby = true;
+  }
   castLine(speed) {
     //set cast state
     this.cast = true;
     //Give an initial velocity?
     this.dL = 10*speed;
-    //Play Sound effect
-    var snd = new Audio("Assets\\castSound.mp3");
-    snd.play();
   }
   draw() {
     //draw the line.
     ctx.beginPath();
     ctx.moveTo(this.origin.x, this.origin.y);
     ctx.lineTo(this.origin.x, this.origin.y + this.length);
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 2;
     ctx.strokeStyle = "black";
     ctx.stroke();
     ctx.closePath();
     //draw the score.
+    ctx.font = "20px Chelsea Market";
+    ctx.fillText(this.user.username, this.origin.x + 5, this.origin.y + 20);
     if( !this.lobby ){
-      ctx.font = "30px Chelsea Market";
-      ctx.fillText("Score:" + this.score.toString(), this.origin.x, this.origin.y + 30);  
+      ctx.fillText("Score:" + this.score.toString(), this.origin.x + 5, this.origin.y + 40);
     }
     //Draw hook hitbox.
     /*
@@ -89,23 +94,29 @@ class Hook {
   }
   catch() {
     if(this.hooked != -1 && this.y + this.img.height < 0){
-      //Play sound effect
-      var snd = new Audio("Assets\\caughtFish.mp3");
-      snd.play();
-      //Game Logic
-      this.score += 1;
-	  //Maximizes the winning score
-	  if(this.score > winning.score)
-	  {
-		  winning.user = this.user;
-		  winning.score = this.score;
-	  }
-	  
-	  connection.emit('fishCaught', this.user, fish[this.hooked]);
+	    if(fish[this.hooked].name == "jelly")
+	    {
+        console.log('jellies suck');
+		    fish[this.hooked].respawn();
+        this.hooked = -1;
+        this.reset();
+		  }
+      else
+      {
+        this.score += 1;
+	      //Maximizes the winning score
+	      if(this.score > winning.score)
+	      {
+			  winning.username = this.user.username;
+		      winning.userId = this.servId;
+		      winning.score = this.score;
+	      }
+
+	  connection.emit('fishCaught', this.servId, fish[this.hooked].name, sessionId);
       fish[this.hooked].respawn();
       this.hooked = -1;
       this.reset();
-	  
+	  }
     }
   }
 }

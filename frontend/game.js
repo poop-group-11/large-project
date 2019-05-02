@@ -14,26 +14,28 @@ function initGame() {
   for(var i = 0; i < fishCount; i++){
     fish[i] = new Fish(i);
   }
-  
+  winning.username = hooks[0].username;
+  winning.userId = hooks[0].servId;
   winning.score = 0;
+  winning.on = 1;
 }
 
 //This function is intended for the frontend guys to fill with whatever logic they need.
 //Should basically take inputs from users and translate them into game terms for gameplay.
 function listen() {
-  //TODO
+
   connection.on('casted', findAndSend);
   connection.on('reeled', directionDetermine);
 }
 
-function directionDetermine(user, direction)
+function directionDetermine(userid, direction)
 {
-	hooks[hookList[user]].castLine(direction);
+	hooks[hookList[userid]].dL = 10 * direction;
 }
 
-function findAndSend(user)
+function findAndSend(userid)
 {
-	hooks[hookList[user]].castLine(1);
+	hooks[hookList[userid]].castLine(1);
 }
 
 function drawHooks() {
@@ -79,10 +81,14 @@ function collision() {
 //Should contain logic to send whatever necessary information to users/websocket.
 function talk() {
   //TODO
-  if(winning.score >= scoreGoal)
+  if(winning.score >= scoreGoal && winning.on == 1)
   {
+    //Edit HTML to show winner
+    document.getElementById("winner-name").innerHTML = winning.username + " wins!";
+    document.getElementById("winner-display").style.display = "flex";
 	  //console.log('Game should end');
-	  connection.emit('endSession', (sessionId, winning.user));
+	  connection.emit('endSession', sessionId, winning.userId);
+	  winning.on = 0;
   }
 }
 

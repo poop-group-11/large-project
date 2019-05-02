@@ -17,23 +17,24 @@ function loadImg(src) {
 
 const fishAssets = [];
 
-function pushAsset(left, right) {
+function pushAsset(left, right, id) {
   fishAssets.push({left: loadImg(left),
-                   right: loadImg(right)});
+                   right: loadImg(right),
+                   name: id});
 }
 
 var fishHook;
 
 function loadAssets() {
   fishHook = loadImg("Assets\\fishHook.svg");
-  pushAsset("Assets\\betaleft.svg", "Assets\\betaright.svg");
-  pushAsset("Assets\\clownfishLeft.svg", "Assets\\clownfish.svg");
-  pushAsset("Assets\\flounderleft.svg", "Assets\\flounderright.svg");
-  pushAsset("Assets\\hammerleft.svg", "Assets\\hammerright.svg");
-  pushAsset("Assets\\jellyleft.svg", "Assets\\jellyright.svg");
-  pushAsset("Assets\\krabbyleft.svg", "Assets\\krabbyright.svg");
-  pushAsset("Assets\\marlinLeft.svg", "Assets\\marlin.svg");
-  pushAsset("Assets\\pufferleft.svg", "Assets\\pufferright.svg");
-  pushAsset("Assets\\rainbowleft.svg", "Assets\\rainbowright.svg");
-  pushAsset("Assets\\seahorseleft.svg", "Assets\\seahorseright.svg");
+  pushAsset("Assets\\betaleft.svg", "Assets\\betaright.svg", "beta");
+  pushAsset("Assets\\clownfishLeft.svg", "Assets\\clownfish.svg", "clown");
+  pushAsset("Assets\\flounderleft.svg", "Assets\\flounderright.svg", "flounder");
+  pushAsset("Assets\\hammerleft.svg", "Assets\\hammerright.svg", "hammer");
+  pushAsset("Assets\\jellyleft.svg", "Assets\\jellyright.svg", "jelly");
+  pushAsset("Assets\\krabbyleft.svg", "Assets\\krabbyright.svg", "crab");
+  pushAsset("Assets\\marlinLeft.svg", "Assets\\marlin.svg", "marlin");
+  pushAsset("Assets\\pufferleft.svg", "Assets\\pufferright.svg", "puffer");
+  pushAsset("Assets\\rainbowleft.svg", "Assets\\rainbowright.svg", "rainbow");
+  pushAsset("Assets\\seahorseleft.svg", "Assets\\seahorseright.svg", "seahorse");
 }
